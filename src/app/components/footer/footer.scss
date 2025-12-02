@@ -1,0 +1,37 @@
+ @use "tailwindcss";
+
+ /* FOOTER GLOBAL STYLE */
+
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Smooth text animation */
+.footer-title,
+.footer-subtitle,
+.footer-final-text {
+  animation: fadeInUp 0.8s ease;
+}
+
+.footer-stat-card {
+  @apply p-8 rounded-3xl backdrop-blur-xl shadow-2xl transition-all duration-300;
+  transform: translateY(0px);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+}
+
+/* Fade-Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

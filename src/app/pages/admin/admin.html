@@ -1,0 +1,197 @@
+<div class="min-h-screen theme-background relative overflow-hidden py-12 px-6">
+
+  <!-- Floating Orbs (Theme-Aware) -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         style="background: var(--orb-1)"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse delay-1000"
+         style="background: var(--orb-2)"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500 -translate-x-1/2 -translate-y-1/2"
+         style="background: var(--orb-3)"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row items-center justify-between mb-16">
+      <div>
+        <h1 class="text-6xl md:text-7xl font-extrabold theme-heading leading-tight">
+          Admin Command Center
+        </h1>
+        <p class="mt-4 text-2xl theme-text opacity-80 font-light">
+          Managing the future of conscious commerce
+        </p>
+      </div>
+
+      <div class="flex items-center gap-8 mt-8 md:mt-0">
+        <div class="text-xl font-bold theme-heading flex items-center gap-3">
+          <span class="w-4 h-4 rounded-full animate-pulse"
+                style="background: var(--accent)"></span>
+          Live • {{ today }}
+        </div>
+
+        <button (click)="downloadCsv()" [disabled]="isDownloading"
+                class="admin-button flex items-center gap-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          {{ isDownloading ? 'Exporting...' : 'Export Orders CSV' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Platform Stats -->
+    <div *ngIf="report; else loadingStats" 
+         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+
+      <div class="admin-info-card">
+        <p class="theme-text text-lg font-medium">Total Revenue</p>
+        <p class="admin-info-number">
+          ₹{{ report.totalRevenue | number:'1.0-0' }}
+        </p>
+      </div>
+
+      <div class="admin-info-card">
+        <p class="theme-text text-lg font-medium">Total Orders</p>
+        <p class="admin-info-number">
+          {{ report.totalOrders }}
+        </p>
+      </div>
+
+      <div class="admin-info-card">
+        <p class="theme-text text-lg font-medium">Net Carbon Impact</p>
+        <p class="admin-info-number"
+            [ngClass]="report.netCarbon > 0 ? 'text-red-500' : 'theme-heading'">
+          {{ report.netCarbon > 0 ? '+' : '' }}{{ report.netCarbon | number:'1.1-1' }} kg
+        </p>
+      </div>
+
+      <div class="admin-info-card">
+        <p class="theme-text text-lg font-medium">Active Users</p>
+        <p class="admin-info-number">
+          {{ report.totalUsers }}
+        </p>
+      </div>
+    </div>
+
+    <ng-template #loadingStats>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div *ngFor="let _ of [1,2,3,4]" class="p-10 rounded-3xl bg-white/40 animate-pulse">
+          <div class="h-8 bg-gray-200 rounded w-40 mb-4"></div>
+          <div class="h-16 bg-gray-300 rounded w-32"></div>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Pending Requests (3-Column Grid) -->
+    <div class="grid lg:grid-cols-3 gap-10">
+
+      <!-- Admin Requests -->
+      <div class="admin-panel-card">
+        <div class="admin-panel-header">
+          <h2 class="text-3xl font-black theme-heading">Pending Admin Requests</h2>
+          <p class="theme-text opacity-80 text-xl">{{ pendingAdminRequests.length }} awaiting review</p>
+        </div>
+
+        <div class="p-6 max-h-96 overflow-y-auto space-y-6">
+          <div *ngIf="pendingAdminRequests.length === 0" class="text-center py-16 theme-text opacity-60">
+            No pending admin requests
+          </div>
+
+          <div *ngFor="let req of pendingAdminRequests" class="admin-item-card">
+            <p class="item-title">{{ req.user.name }}</p>
+            <p class="item-sub">{{ req.user.email }}</p>
+            <p class="item-time">{{ req.requestedAt | date:'medium' }}</p>
+
+            <div class="flex gap-4 mt-6">
+              <button (click)="approveAdminRequest(req.id)"
+                      [disabled]="processing.has(req.id)"
+                      class="admin-approve-btn">
+                Approve Admin
+              </button>
+
+              <button (click)="rejectAdminRequest(req.id)"
+                      [disabled]="processing.has(req.id)"
+                      class="admin-reject-btn">
+                Reject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Sellers -->
+      <div class="admin-panel-card">
+        <div class="admin-panel-header">
+          <h2 class="text-3xl font-black theme-heading">Pending Sellers</h2>
+          <p class="theme-text opacity-80 text-xl">{{ pendingSellers.length }} awaiting approval</p>
+        </div>
+
+        <div class="p-6 max-h-96 overflow-y-auto space-y-6">
+          <div *ngIf="pendingSellers.length === 0" class="text-center py-16 theme-text opacity-60">
+            No new seller applications
+          </div>
+
+          <div *ngFor="let seller of pendingSellers" class="admin-item-card">
+            <p class="item-title">{{ seller.name }}</p>
+            <p class="item-sub">{{ seller.email }}</p>
+            <p class="item-extra">{{ seller.productCount }} product(s)</p>
+
+            <button (click)="approveSeller(seller.id)" 
+                    [disabled]="processing.has(seller.id)"
+                    class="admin-approve-btn w-full mt-6">
+              Approve as Seller
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Products -->
+      <div class="admin-panel-card">
+        <div class="admin-panel-header">
+          <h2 class="text-3xl font-black theme-heading">Pending Eco Products</h2>
+          <p class="theme-text opacity-80 text-xl">{{ pendingProducts.length }} for certification</p>
+        </div>
+
+        <div class="p-6 max-h-96 overflow-y-auto space-y-6">
+          <div *ngIf="pendingProducts.length === 0" class="text-center py-16 theme-text opacity-60">
+            All products certified
+          </div>
+
+          <div *ngFor="let prod of pendingProducts" class="admin-item-card">
+            <p class="item-title">{{ prod.name }}</p>
+            <p class="item-extra">₹{{ prod.price }}</p>
+            <p class="item-sub">Saves {{ prod.carbonImpact }} kg CO₂/unit</p>
+            <p class="item-time">by {{ prod.sellerName }}</p>
+
+            <div class="flex gap-4 mt-6">
+              <button (click)="approveProduct(prod.id)"
+                      [disabled]="processing.has(prod.id)"
+                      class="admin-approve-btn">
+                Certify Product
+              </button>
+
+              <button (click)="rejectProduct(prod.id)"
+                      [disabled]="processing.has(prod.id)"
+                      class="admin-reject-btn">
+                Reject
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <div class="text-center mt-20">
+      <a routerLink="/" class="text-2xl font-bold theme-heading hover:underline transition">
+        Back to Home
+      </a>
+    </div>
+
+  </div>
+</div>

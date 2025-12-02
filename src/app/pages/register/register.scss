@@ -1,0 +1,71 @@
+/* ==========================================================
+   REGISTER PAGE — THEME AWARE STYLES
+========================================================== */
+
+/* Attach global theme colors */
+:host {
+  display: block;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Background wrapper */
+.theme-background {
+  background: linear-gradient(to bottom right, var(--gradient-1), var(--gradient-2));
+}
+
+/* Headings + Text */
+.theme-heading {
+  color: var(--heading);
+}
+
+.theme-text {
+  color: var(--text);
+}
+
+/* Theme-based card */
+.theme-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+}
+
+/* Theme button */
+.theme-button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  transition: 0.3s ease;
+}
+.theme-button:hover {
+  background: var(--button-hover);
+}
+
+/* Replace login/register green orb with theme orbs */
+.orb {
+  background: var(--orb-1);
+  filter: blur(80px);
+  opacity: 0.55;
+}
+
+/* Input fields use theme border on focus */
+input {
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.25);
+}
+
+/* Submit button animation */
+.register-cta {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.register-cta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* Error text color */
+.error-text {
+  color: #e11d48; /* rose-600 */
+}

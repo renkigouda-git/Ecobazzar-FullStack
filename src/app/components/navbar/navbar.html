@@ -1,0 +1,179 @@
+<!-- ⭐ THEME-AWARE NAVBAR ⭐ -->
+<mat-toolbar class="theme-navbar fixed top-0 left-0 right-0 z-50 shadow-2xl border-b">
+
+  <div class="flex items-center justify-between w-full max-w-7xl mx-auto px-6 py-3">
+
+    <!-- Logo -->
+    <a routerLink="/" class="flex items-center gap-3 group">
+      <div class="text-4xl font-black tracking-tighter theme-heading
+                  bg-gradient-to-r from-[color:var(--heading)] to-[color:var(--accent)]
+                  bg-clip-text text-transparent group-hover:opacity-80 transition-all duration-500">
+        EcoBazaar
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-10 flex-1 justify-center">
+
+      <!-- Normal User -->
+      <ng-container *ngIf="auth.isUser() && !auth.isSeller() && !auth.isAdmin()">
+
+        <a routerLink="/products" routerLinkActive="active-link" class="nav-link text-lg">
+  Shop
+</a>
+
+<a routerLink="/cart" routerLinkActive="active-link" class="nav-link text-lg relative">
+  Cart
+  <span *ngIf="cartCount > 0"
+        class="absolute -top-3 -right-6 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-lg">
+    {{ cartCount }}
+  </span>
+</a>
+
+     <a routerLink="/dashboard" class="nav-link text-lg">
+  My Impact
+</a>
+   
+
+        
+
+      </ng-container>
+
+      <!-- Seller -->
+      <ng-container *ngIf="auth.isSeller() && !auth.isAdmin()">
+        <a routerLink="/seller/dashboard"
+           class="font-bold text-xl theme-heading transition-all duration-300 hover:scale-110">
+          Seller Hub
+        </a>
+      </ng-container>
+
+      <!-- Admin -->
+      <ng-container *ngIf="auth.isAdmin()">
+        <a routerLink="/admin"
+           class="px-8 py-3 rounded-full font-black transition-all duration-300
+                  backdrop-blur-md border theme-text theme-card hover:opacity-80">
+          Admin Panel
+        </a>
+      </ng-container>
+
+    </nav>
+
+    <!-- Right Side -->
+    <div class="flex items-center gap-6">
+      <!-- Always Visible Themes Button -->
+<button 
+  mat-stroked-button 
+  [matMenuTriggerFor]="themeMenu"
+  class="px-6 py-2 rounded-full font-semibold theme-text border transition hover:opacity-80"
+>
+  🌈 Themes
+</button>
+
+      <!-- Guest -->
+      <ng-container *ngIf="!auth.isLoggedIn()">
+
+        <button mat-stroked-button routerLink="/login"
+                class="px-6 py-2 rounded-full font-semibold theme-text border transition">
+          Login
+        </button>
+
+        <button mat-raised-button routerLink="/register"
+                class="px-8 py-2 rounded-full font-bold theme-button shadow-lg">
+          Join Free
+        </button>
+
+      </ng-container>
+
+      <!-- Logged In -->
+      <ng-container *ngIf="auth.isLoggedIn()">
+
+        <div class="flex items-center gap-6 border-l pl-6 theme-text">
+
+          <div class="text-right">
+            <p class="opacity-75 text-sm theme-text">Welcome back</p>
+            <p class="font-bold text-lg theme-heading">{{ auth.getName() }}</p>
+          </div>
+
+          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <mat-icon class="text-3xl theme-heading">account_circle</mat-icon>
+          </button>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+
+  </div>
+</mat-toolbar>
+
+
+<!-- ⭐ USER MENU ⭐ -->
+<mat-menu #userMenu="matMenu" class="mt-4">
+
+  <button mat-menu-item routerLink="/dashboard" *ngIf="auth.isUser() && !auth.isSeller()">
+    <mat-icon>dashboard</mat-icon> My Impact
+  </button>
+
+  <button mat-menu-item routerLink="/seller/dashboard" *ngIf="auth.isSeller()">
+    <mat-icon>storefront</mat-icon> Seller Dashboard
+  </button>
+
+  <button mat-menu-item routerLink="/admin" *ngIf="auth.isAdmin()">
+    <mat-icon>shield</mat-icon> Admin Panel
+  </button>
+
+  <mat-divider></mat-divider>
+
+    <!-- ⭐ THEME MENU ⭐ -->
+<mat-menu #themeMenu="matMenu" xPosition="before" class="px-2 py-2">
+
+  <div class="flex flex-col gap-1 w-48 p-2">
+
+    <button mat-menu-item (click)="setTheme('theme-snow')" class="theme-menu-item">❄ Snow</button>
+    <button mat-menu-item (click)="setTheme('theme-azure')" class="theme-menu-item">🔵 Azure</button>
+    <button mat-menu-item (click)="setTheme('theme-forest')" class="theme-menu-item">🌲 Forest</button>
+    <button mat-menu-item (click)="setTheme('theme-rose')" class="theme-menu-item">🌸 Rose</button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item (click)="setTheme('theme-neon-pink')" class="theme-menu-item">💖 Neon Pink</button>
+    <button mat-menu-item (click)="setTheme('theme-neon-blue')" class="theme-menu-item">💎 Neon Blue</button>
+
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="setTheme('theme-dark-purple')" class="theme-menu-item">🟣 Dark Purple</button>
+    <button mat-menu-item (click)="setTheme('theme-dark-ocean')" class="theme-menu-item">🌊 Dark Ocean</button>
+    <button mat-menu-item (click)="setTheme('theme-amoled')" class="theme-menu-item">🖤 Amoled Black</button>
+
+  </div>
+
+</mat-menu>
+
+
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon> Logout
+  </button>
+
+</mat-menu>
+
+
+<!-- ⭐ PAGE WRAPPER ⭐ -->
+<div class="pt-16 min-h-screen theme-background relative overflow-hidden">
+
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         [style.background]="'var(--orb-1)'"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse delay-1000"
+         [style.background]="'var(--orb-2)'"></div>
+
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500"
+         [style.background]="'var(--orb-3)'"></div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>

@@ -1,0 +1,165 @@
+<div class="min-h-screen theme-background relative overflow-hidden py-12 px-6">
+
+  <!-- Floating Orbs (auto-colored by theme) -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         style="background: var(--orb-1)"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse delay-1000"
+         style="background: var(--orb-2)"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500 -translate-x-1/2 -translate-y-1/2"
+         style="background: var(--orb-3)"></div>
+  </div>
+
+
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-6xl md:text-7xl font-extrabold theme-heading leading-tight">
+        Your Conscious Cart
+      </h1>
+
+      <p class="mt-4 text-2xl theme-text opacity-80 font-light">
+        Every item here is a step toward a greener planet
+      </p>
+    </div>
+
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-32">
+      <div class="inline-block animate-spin rounded-full h-20 w-20 border-4 border-[color:var(--accent)] border-t-transparent"></div>
+      <p class="mt-8 text-2xl theme-text opacity-80">Loading your eco-conscious choices...</p>
+    </div>
+
+
+    <!-- Error -->
+    <div *ngIf="error" class="text-center py-32">
+      <p class="text-3xl font-bold text-red-600 mb-6">{{ error }}</p>
+      <button (click)="loadCart()" class="theme-button px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transition">
+        Try Again
+      </button>
+    </div>
+
+
+    <!-- Empty Cart -->
+    <div *ngIf="!loading && items.length === 0" class="text-center py-32">
+      <div class="text-9xl mb-8 opacity-20 theme-heading">Cart</div>
+
+      <p class="text-4xl font-bold theme-heading mb-6">Your cart is empty</p>
+      <p class="text-xl theme-text opacity-80 mb-10">
+        But the planet is waiting for your conscious choices
+      </p>
+
+      <a routerLink="/products"
+         class="theme-button inline-block px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
+        Start Shopping Consciously
+      </a>
+    </div>
+
+
+    <!-- Cart Items -->
+    <div *ngIf="!loading && items.length > 0" class="grid lg:grid-cols-3 gap-10">
+
+      <!-- Item List -->
+      <div class="lg:col-span-2 space-y-6">
+        <div *ngFor="let item of items; trackBy: trackByItemId"
+             class="cart-item-card">
+
+          <!-- Product Image -->
+          <div class="relative">
+            <img [src]="item.imageUrl || 'assets/placeholder.png'" [alt]="item.productName"
+                 class="w-32 h-32 object-cover rounded-2xl shadow-lg" />
+
+            <div *ngIf="item.ecoCertified"
+                 class="absolute -top-3 -right-3 px-4 py-2 rounded-full text-xs font-bold shadow-lg animate-pulse"
+                 style="background: var(--accent); color: var(--button-text);">
+              Certified
+            </div>
+          </div>
+
+          <!-- Product Info -->
+          <div class="flex-1">
+            <h3 class="text-2xl font-extrabold theme-heading group-hover:text-[color:var(--accent)] transition">
+              {{ item.productName }}
+            </h3>
+
+            <div class="mt-4 flex items-center gap-8 text-lg theme-text">
+              <p>Quantity: <strong class="text-[color:var(--accent)]">{{ item.quantity }}</strong></p>
+              <p>CO₂:
+                <strong class="text-red-500">
+                  {{ item.carbonImpact * item.quantity | number:'1.1-2' }} kg
+                </strong>
+              </p>
+            </div>
+
+            <p class="mt-4 text-3xl font-bold text-[color:var(--accent)]">
+              ₹{{ (item.price * item.quantity) | number:'1.0-0' }}
+            </p>
+          </div>
+
+          <!-- Remove -->
+          <button (click)="remove(item.id)" class="cart-remove-btn">
+            Remove
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Summary -->
+      <div class="lg:col-span-1">
+        <div class="summary-card">
+
+          <h2 class="text-4xl font-black text-center theme-heading mb-8">Order Summary</h2>
+
+          <div class="space-y-6 text-xl theme-text">
+
+            <div class="flex justify-between">
+              <span>Subtotal</span>
+              <span class="font-bold theme-heading">₹{{ totalPrice | number:'1.0-0' }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>CO₂ Impact</span>
+              <span class="font-bold">{{ totalCarbon | number:'1.1-2' }} kg</span>
+            </div>
+
+            <!-- Carbon Saved -->
+            <div *ngIf="totalCarbonSaved > 0" class="summary-highlight">
+              <p class="text-3xl font-black theme-heading">You’re Saving</p>
+              <p class="text-5xl font-black mt-2">{{ totalCarbonSaved | number:'1.1-2' }} kg CO₂</p>
+              <p class="mt-2 opacity-90 theme-text">Compared to conventional choices</p>
+            </div>
+
+            <!-- Swap Suggestion -->
+            <div *ngIf="suggestedEcoProduct" class="summary-swap">
+              <p class="text-xl font-bold mb-2 theme-heading">
+                Switch to <span class="text-[color:var(--accent-dark)]">
+                  {{ suggestedEcoProduct.name }}</span>
+              </p>
+
+              <p class="text-3xl font-black theme-heading">
+                Save {{ suggestedEcoProduct.carbonSavings | number:'1.1-2' }} kg CO₂
+              </p>
+
+              <button (click)="swapToEco()" class="swap-button">
+                Yes, Make It Eco!
+              </button>
+            </div>
+          </div>
+
+          <!-- Checkout -->
+          <button (click)="checkout()" class="checkout-btn">
+            Proceed to Checkout
+          </button>
+
+          <p class="mt-6 text-center text-sm opacity-80 theme-text">Secure • Fast • Planet-Friendly</p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

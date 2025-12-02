@@ -1,0 +1,89 @@
+/* ==========================================================
+   CART PAGE — THEME-AWARE PREMIUM STYLING
+========================================================== */
+
+.cart-item-card {
+  background: var(--card-bg);
+  border: 1px solid var(--primary-50);
+  color: var(--text);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  transition: 0.3s ease;
+}
+
+.cart-item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Remove Button */
+.cart-remove-btn {
+  color: red;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cart-remove-btn:hover {
+  color: darkred;
+  transform: scale(1.1);
+}
+
+/* Summary Card */
+.summary-card {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: var(--button-text);
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+.summary-highlight {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.4);
+  text-align: center;
+}
+
+.summary-swap {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.25);
+  border: 2px solid var(--accent-light);
+  text-align: center;
+}
+
+/* Swap Button */
+.swap-button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: white;
+  color: var(--accent);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.swap-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Checkout Button */
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 0;
+  border-radius: 18px;
+  background: white;
+  color: var(--accent);
+  font-size: 1.6rem;
+  font-weight: 900;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #f3f3f3;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}

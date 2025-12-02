@@ -1,0 +1,43 @@
+/* SELLER DASHBOARD — THEME ANIMATIONS */
+
+.fade-in {
+  animation: fadeIn 0.7s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Table smooth highlight */
+tr:hover {
+  transition: background 0.25s ease;
+}
+
+/* Chart card itself (already using theme-card in HTML) */
+.chart-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Optional soft shadow for the canvas */
+.chart-shadow {
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+}
+/* Force top stats labels visible in dark theme */
+.seller-stats-label {
+  color: var(--heading) !important;
+  opacity: 0.9 !important;
+}
+
+/* Make number text always visible */
+.seller-stats-number {
+  color: var(--heading) !important;
+}

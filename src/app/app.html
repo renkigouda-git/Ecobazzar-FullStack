@@ -1,0 +1,29 @@
+<ngx-spinner bdOpacity="0.3" size="medium" type="ball-spin-clockwise" [fullScreen]="true"></ngx-spinner>
+
+<app-navbar></app-navbar>
+
+<!-- THEME-CONTROLLED BACKGROUND WRAPPER -->
+<div class="min-h-screen theme-background relative overflow-hidden">
+
+  <!-- THEME AWARE FLOATING ORBS -->
+  <div class="fixed inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         style="background: var(--orb-1);"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse delay-700"
+         style="background: var(--orb-2);"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500
+                -translate-x-1/2 -translate-y-1/2"
+         style="background: var(--orb-3);"></div>
+  </div>
+
+  <div class="pt-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

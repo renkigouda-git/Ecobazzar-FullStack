@@ -1,0 +1,13 @@
+/* Theme-aware login card (optional refinements) */
+
+:host {
+  display: block;
+}
+
+.theme-surface {
+  background: var(--surface);
+}
+
+input::placeholder {
+  opacity: .6;
+}

@@ -1,0 +1,262 @@
+/* ==========================================================
+   GLOBAL DEFAULT THEME
+========================================================== */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --heading: #0f0f0f;
+
+  --accent: #10b981;
+  --accent-light: #d1fae5;
+  --accent-dark: #065f46;
+
+  --card-bg: rgba(255,255,255,0.7);
+  --card-border: rgba(0,0,0,0.12);
+  --button-text: #ffffff;
+
+  --gradient-1: #ffffff;
+  --gradient-2: #f3f4f6;
+
+  --orb-1: rgba(16,185,129,0.16);
+  --orb-2: rgba(16,185,129,0.12);
+  --orb-3: rgba(209,250,229,0.14);
+}
+
+/* ----------------------------------------------------------
+   1️⃣ SNOW
+---------------------------------------------------------- */
+.theme-snow {
+  --accent: #8b5cf6;
+  --accent-light: #ede9fe;
+  --accent-dark: #6d28d9;
+
+  --bg: #ffffff;
+  --surface: #fafaff;
+  --text: #1f1b2e;
+  --heading: #120f1f;
+
+  --gradient-1: #f5f3ff;
+  --gradient-2: #eef2ff;
+}
+
+/* ----------------------------------------------------------
+   2️⃣ AMBER
+---------------------------------------------------------- */
+.theme-amber {
+  --accent: #ff8c00;
+  --accent-light: #ffe8c2;
+  --accent-dark: #cc7000;
+
+  --bg: #fff7e8;
+  --surface: #fff3da;
+  --text: #33210a;
+  --heading: #1f1505;
+
+  --gradient-1: #fff3d3;
+  --gradient-2: #ffe2b0;
+}
+
+/* ----------------------------------------------------------
+   3️⃣ AZURE
+---------------------------------------------------------- */
+.theme-azure {
+  --accent: #3b82f6;
+  --accent-light: #dbeafe;
+  --accent-dark: #1d4ed8;
+
+  --bg: #e7f1ff;
+  --surface: #f7fbff;
+  --text: #1b2a45;
+  --heading: #0f1b33;
+
+  --gradient-1: #e0f2ff;
+  --gradient-2: #badcff;
+}
+
+/* ----------------------------------------------------------
+   4️⃣ FOREST
+---------------------------------------------------------- */
+.theme-forest {
+  --accent: #059669;
+  --accent-light: #d1fae5;
+  --accent-dark: #047857;
+
+  --bg: #e6fff4;
+  --surface: #f2fffa;
+  --text: #083e2d;
+  --heading: #05251a;
+
+  --gradient-1: #e9fff7;
+  --gradient-2: #c3ffe9;
+}
+
+/* ----------------------------------------------------------
+   5️⃣ ROSE
+---------------------------------------------------------- */
+.theme-rose {
+  --accent: #ec4899;
+  --accent-light: #fde2f2;
+  --accent-dark: #be185d;
+
+  --bg: #fdf2f8;
+  --surface: #fce7f3;
+  --text: #4b264a;
+  --heading: #33152f;
+
+  --gradient-1: #fde4f5;
+  --gradient-2: #f7d3ff;
+}
+
+/* ----------------------------------------------------------
+   6️⃣ NEON PINK
+---------------------------------------------------------- */
+.theme-neon-pink {
+  --accent: #ff1cf7;
+  --accent-light: #ffb3fb;
+  --accent-dark: #cc00ca;
+
+  --bg: #2b0030;
+  --surface: #3b0043;
+  --text: #ffd8fe;
+  --heading: #ffffff;
+
+  --gradient-1: #4d0057;
+  --gradient-2: #26002b;
+}
+
+/* ----------------------------------------------------------
+   7️⃣ NEON BLUE
+---------------------------------------------------------- */
+.theme-neon-blue {
+  --accent: #00eaff;
+  --accent-light: #b3faff;
+  --accent-dark: #00b3c7;
+
+  --bg: #00131a;
+  --surface: #00212b;
+  --text: #d2faff;
+  --heading: #ffffff;
+
+  --gradient-1: #003344;
+  --gradient-2: #001b24;
+}
+
+/* ----------------------------------------------------------
+   8️⃣ NEON GREEN
+---------------------------------------------------------- */
+.theme-neon-green {
+  --accent: #39ff14;
+  --accent-light: #c3ffb3;
+  --accent-dark: #1cb300;
+
+  --bg: #011a00;
+  --surface: #022900;
+  --text: #d6ffd2;
+  --heading: #ffffff;
+
+  --gradient-1: #044d00;
+  --gradient-2: #022600;
+}
+
+/* ----------------------------------------------------------
+   9️⃣ DARK GRAY
+---------------------------------------------------------- */
+.theme-dark-gray {
+  --bg: #1e1e1e;
+  --surface: #252525;
+  --text: #dcdcdc;
+  --heading: #ffffff;
+
+  --accent: #0ea5e9;
+  --accent-light: #bae6fd;
+  --accent-dark: #0369a1;
+
+  --gradient-1: #2b2b2b;
+  --gradient-2: #1a1a1a;
+}
+
+/* ----------------------------------------------------------
+   🔟 DARK PURPLE
+---------------------------------------------------------- */
+.theme-dark-purple {
+  --bg: #16001a;
+  --surface: #240026;
+  --text: #fcdfff;
+  --heading: #ffffff;
+
+  --accent: #a855f7;
+  --accent-light: #e9d5ff;
+  --accent-dark: #6b21a8;
+
+  --gradient-1: #2d0033;
+  --gradient-2: #18001c;
+}
+
+/* ----------------------------------------------------------
+   1️⃣1️⃣ DARK OCEAN
+---------------------------------------------------------- */
+.theme-dark-ocean {
+  --bg: #00151f;
+  --surface: #002330;
+  --text: #d0f0ff;
+  --heading: #ffffff;
+
+  --accent: #38bdf8;
+  --accent-light: #bae6fd;
+  --accent-dark: #0ea5e9;
+
+  --gradient-1: #003445;
+  --gradient-2: #001a25;
+}
+
+/* ----------------------------------------------------------
+   1️⃣2️⃣ AMOLED BLACK (Pure Black)
+---------------------------------------------------------- */
+.theme-amoled {
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --text: #f2f2f2;
+  --heading: #ffffff;
+
+  --accent: #00f6ff;
+  --accent-light: #affbff;
+  --accent-dark: #00b6c2;
+
+  --gradient-1: #000000;
+  --gradient-2: #0a0a0a;
+}
+/* ======================================================
+   CHART COLORS (GLOBAL)
+====================================================== */
+:root {
+  --chart-line: #0fa968;
+  --chart-fill: rgba(15, 169, 104, 0.25);
+  --chart-text: #111;
+}
+
+/* Light themes */
+.theme-snow,
+.theme-azure,
+.theme-rose,
+.theme-forest {
+  --chart-text: #111;
+}
+
+/* Dark themes */
+.theme-dark-purple,
+.theme-dark-ocean,
+.theme-amoled {
+  --chart-line: var(--accent);
+  --chart-fill: color-mix(in srgb, var(--accent) 25%, transparent);
+  --chart-text: #ffffff;
+}
+
+/* Neon themes */
+.theme-neon-blue,
+.theme-neon-pink,
+.theme-neon-green {
+  --chart-line: var(--accent);
+  --chart-fill: color-mix(in srgb, var(--accent) 22%, transparent);
+  --chart-text: var(--text);
+}
