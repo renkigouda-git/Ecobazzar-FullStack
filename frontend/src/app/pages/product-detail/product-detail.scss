@@ -1,0 +1,86 @@
+/* =====================================================
+   PRODUCT DETAIL PAGE — THEME SUPPORT
+===================================================== */
+
+/* Page wrapper uses theme vars */
+:host {
+  display: block;
+  background: linear-gradient(var(--gradient-1), var(--gradient-2));
+  color: var(--text);
+}
+
+/* Titles */
+h1, h2, h3, h4 {
+  color: var(--heading);
+}
+
+/* Text */
+.theme-text {
+  color: var(--text) !important;
+}
+
+/* Card / surfaces */
+.theme-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  color: var(--text) !important;
+}
+
+/* Buttons */
+.theme-button {
+  background: var(--button-bg) !important;
+  color: var(--button-text) !important;
+}
+.theme-button:hover {
+  background: var(--button-hover) !important;
+}
+
+/* Borders */
+.border-accent {
+  border-color: var(--accent) !important;
+}
+
+/* Accent Text */
+.text-accent {
+  color: var(--accent) !important;
+}
+
+/* Background Accent */
+.bg-accent {
+  background: var(--accent) !important;
+  color: white !important;
+}
+
+/* Certified Badge */
+.certified-badge {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Price styling */
+.price {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+/* Eco highlight */
+.eco-box {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+}
+
+/* Orbs fully theme-aware */
+.orb-1 { background: var(--orb-1) !important; }
+.orb-2 { background: var(--orb-2) !important; }
+.orb-3 { background: var(--orb-3) !important; }
+
+/* Hover scale images */
+.product-img:hover {
+  transform: scale(1.05);
+}
+
+/* Transition smoothing */
+*, *::before, *::after {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

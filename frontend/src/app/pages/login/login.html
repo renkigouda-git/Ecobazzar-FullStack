@@ -1,24 +1,27 @@
-<div class="min-h-screen flex items-center justify-center px-4 
-                bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 
-                relative overflow-hidden">
+<div class="min-h-screen flex items-center justify-center px-4 theme-background relative overflow-hidden">
 
-  <!-- Subtle floating eco orbs -->
-  <div class="absolute inset-0 -z-10">
-    <div class="absolute top-10 left-10 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-5 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+  <!-- Floating Orbs (Theme Aware) -->
+  <div class="absolute inset-0 -z-10 pointer-events-none">
+    <div class="absolute top-10 left-10 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         style="background: var(--orb-1);"></div>
+
+    <div class="absolute bottom-20 right-5 w-80 h-80 rounded-full blur-3xl animate-pulse delay-700"
+         style="background: var(--orb-2);"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500 
+                -translate-x-1/2 -translate-y-1/2"
+         style="background: var(--orb-3);"></div>
   </div>
 
   <div class="w-full max-w-md">
+
     <!-- Card -->
-    <div class="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-emerald-100 
-                    p-10 transition-all duration-500">
-      
-      <!-- Logo / Title -->
+    <div class="theme-surface rounded-3xl shadow-2xl border theme-card p-10 transition-all duration-500">
+
+      <!-- Logo -->
       <div class="text-center mb-10">
-        <h1 class="text-5xl font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-          EcoBazaar
-        </h1>
-        <p class="mt-3 text-lg text-gray-600">
+        <h1 class="text-5xl font-extrabold theme-heading">EcoBazaar</h1>
+        <p class="mt-3 text-lg theme-text opacity-80">
           Log in to continue making the planet proud
         </p>
       </div>
@@ -36,16 +39,19 @@
             email
             placeholder="you@example.com"
             class="w-full px-6 py-4 text-lg rounded-2xl border-2 
-                   border-gray-200 bg-white text-gray-900
+                   border-[color:var(--card-border)]
+                   bg-[color:var(--surface)]
+                   text-[color:var(--text)]
                    placeholder-gray-500
-                   focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20
+                   focus:border-[color:var(--accent)]
+                   focus:ring-4 focus:ring-[color:var(--accent)]/20
                    outline-none transition-all duration-300"
             [class.border-red-500]="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)"
           />
           <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)" 
                class="mt-2 text-sm text-red-600">
             <span *ngIf="emailCtrl.errors?.['required']">Email is required.</span>
-            <span *ngIf="emailCtrl.errors?.['email']">Please enter a valid email.</span>
+            <span *ngIf="emailCtrl.errors?.['email']">Enter a valid email.</span>
           </div>
         </div>
 
@@ -59,8 +65,11 @@
             required
             placeholder="••••••••"
             class="w-full px-6 py-4 text-lg rounded-2xl border-2 
-                   border-gray-200 bg-white text-gray-900
-                   focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20
+                   border-[color:var(--card-border)]
+                   bg-[color:var(--surface)]
+                   text-[color:var(--text)]
+                   focus:border-[color:var(--accent)]
+                   focus:ring-4 focus:ring-[color:var(--accent)]/20
                    outline-none transition-all duration-300"
             [class.border-red-500]="passwordCtrl.invalid && (passwordCtrl.dirty || passwordCtrl.touched)"
           />
@@ -74,15 +83,14 @@
         <button
           type="submit"
           [disabled]="isLoggingIn || loginForm.invalid"
-          class="w-full py-5 mt-8 text-xl font-bold text-white rounded-2xl 
-                 bg-gradient-to-r from-emerald-600 to-teal-600
-                 hover:from-emerald-700 hover:to-teal-700
-                 disabled:from-emerald-400 disabled:to-teal-400 disabled:cursor-not-allowed
+          class="w-full py-5 mt-8 text-xl font-bold rounded-2xl theme-button
                  shadow-xl hover:shadow-2xl transform hover:-translate-y-1
+                 disabled:opacity-60 disabled:cursor-not-allowed
                  transition-all duration-300 flex items-center justify-center gap-3">
-          
+
           <span *ngIf="!isLoggingIn">Log In</span>
           <span *ngIf="isLoggingIn">Logging you in...</span>
+
           <svg *ngIf="isLoggingIn" class="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
@@ -90,19 +98,15 @@
         </button>
       </form>
 
-      <!-- Register Link -->
-      <p class="mt-10 text-center text-gray-600">
+      <!-- Register -->
+      <p class="mt-10 text-center theme-text">
         New to EcoBazaar?
-        <a routerLink="/register" 
-           class="font-bold text-emerald-600 hover:underline transition">
-          Create an account
-        </a>
+        <a routerLink="/register" class="font-bold theme-heading hover:underline">Create an account</a>
       </p>
 
-      <!-- Optional: Forgot password -->
+      <!-- Forgot Password -->
       <p class="mt-4 text-center">
-        <a routerLink="/forgot-password" 
-           class="text-sm text-gray-500 hover:text-emerald-600 transition">
+        <a routerLink="/forgot-password" class="text-sm theme-text hover:theme-heading transition">
           Forgot your password?
         </a>
       </p>

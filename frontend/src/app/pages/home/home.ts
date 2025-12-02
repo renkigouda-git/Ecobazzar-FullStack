@@ -11,16 +11,21 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./home.scss']
 })
 export class Home {
+
   private auth = inject(AuthService);
   private router = inject(Router);
+
+  // For template: check login state
   loggedIn$ = this.auth.loggedIn$;
 
+  // Dashboard redirect based on role
   goToDashboard() {
     const role = this.auth.getRole();
     if (!role) return this.router.navigateByUrl('/login');
 
     if (role === 'ROLE_ADMIN')  return this.router.navigateByUrl('/admin');
     if (role === 'ROLE_SELLER') return this.router.navigateByUrl('/seller/dashboard');
+
     return this.router.navigateByUrl('/dashboard');
   }
 }

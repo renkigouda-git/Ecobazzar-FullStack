@@ -31,7 +31,6 @@ export class Navbar implements OnInit, OnDestroy {
   private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
-
   cartCount = 0;
 
   ngOnInit(): void {
@@ -42,13 +41,11 @@ export class Navbar implements OnInit, OnDestroy {
     });
 
     this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => {
-        this.updateCartCountIfNeeded();
-      });
+      .pipe(filter(event => event instanceof NavigationEnd), takeUntil(this.destroy$))
+      .subscribe(() => this.updateCartCountIfNeeded());
+
+    const saved = localStorage.getItem('theme');
+    if (saved) this.setTheme(saved);
   }
 
   private updateCartCountIfNeeded(): void {
@@ -62,12 +59,9 @@ export class Navbar implements OnInit, OnDestroy {
   private loadCartCount(): void {
     this.cartService.getSummary().subscribe({
       next: (res: any) => {
-        const items = res?.items;
-        this.cartCount = Array.isArray(items) ? items.length : 0;
+        this.cartCount = Array.isArray(res?.items) ? res.items.length : 0;
       },
-      error: () => {
-        this.cartCount = 0;
-      }
+      error: () => (this.cartCount = 0)
     });
   }
 
@@ -81,4 +75,40 @@ export class Navbar implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  /* ======================================================
+     🔥 MASTER THEME SWITCHER — ALL 10 THEMES
+  ====================================================== */
+  setTheme(theme: string) {
+    const themes = [
+      'theme-snow',
+      'theme-azure',
+      'theme-forest',
+      'theme-rose',
+      'theme-neon-pink',
+      'theme-neon-blue',
+      'theme-dark-purple',
+      'theme-dark-ocean',
+      'theme-amoled'
+    ];
+
+    document.body.classList.remove(...themes);
+    document.body.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  /* Theme Menu List */
+  themes = [
+    { id: 'theme-snow', label: 'Snow' },
+    { id: 'theme-azure', label: 'Azure' },
+    { id: 'theme-forest', label: 'Forest' },
+    { id: 'theme-rose', label: 'Rose' },
+
+    { id: 'theme-neon-pink', label: 'Neon Pink' },
+    { id: 'theme-neon-blue', label: 'Neon Blue' },
+
+    { id: 'theme-dark-purple', label: 'Dark Purple' },
+    { id: 'theme-dark-ocean', label: 'Dark Ocean' },
+    { id: 'theme-amoled', label: 'Amoled Black' }
+  ];
 }

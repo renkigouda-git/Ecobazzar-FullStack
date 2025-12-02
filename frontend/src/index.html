@@ -6,24 +6,43 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- THEME LOADER (5 Themes + Dark Mode) -->
   <script>
     (function () {
       try {
-        const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null
+        const savedTheme = localStorage.getItem('theme') || 'theme-snow';
+
+        document.addEventListener('DOMContentLoaded', function () {
+          // Remove all 5 theme classes
+          document.body.classList.remove(
+            'theme-snow',
+            'theme-amber',
+            'theme-azure',
+            'theme-forest',
+            'theme-rose'
+          );
+
+          // Apply saved theme
+          document.body.classList.add(savedTheme);
+        });
+
+        // Dark Mode (unchanged)
+        const savedDark = localStorage.getItem('darkMode');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const useDark = saved ? saved === 'dark' : prefersDark;
+        const useDark = savedDark ? savedDark === 'dark' : prefersDark;
         document.documentElement.classList.toggle('dark', useDark);
-      } catch (_) {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.classList.add('dark');
-        }
+
+      } catch (err) {
+        document.body.classList.add('theme-snow');
       }
     })();
   </script>
 
+  <!-- ICONS & FONTS -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body class="h-full">
   <app-root></app-root>

@@ -1,0 +1,77 @@
+/* ==========================================================
+   HOME PAGE — THEME AWARE STYLES
+========================================================== */
+
+/* Apply theme colors */
+:host {
+  display: block;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Main background wrapper */
+.theme-background {
+  background: linear-gradient(to bottom right, var(--gradient-1), var(--gradient-2));
+}
+
+/* Theme text and headings */
+.theme-heading {
+  color: var(--heading);
+}
+
+.theme-text {
+  color: var(--text);
+}
+
+/* Theme button */
+.theme-button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  transition: 0.3s ease;
+}
+
+.theme-button:hover {
+  background: var(--button-hover);
+}
+
+/* Theme cards */
+.theme-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+}
+
+/* ---------------------------------------------------
+   Extra Home Animations
+--------------------------------------------------- */
+.home-fade {
+  animation: homeFade 1.2s ease-in-out;
+}
+
+@keyframes homeFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CTA hover animation */
+.cta-bounce {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-bounce:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Orbs follow theme colors */
+.orb {
+  background: var(--orb-1);
+  filter: blur(80px);
+  opacity: 0.6;
+}

@@ -1,0 +1,64 @@
+/* ==========================================================
+   PRODUCT LIST — THEME SAFE STYLES
+   (Works with all 5 themes: snow, amber, azure, forest, rose)
+========================================================== */
+
+/* Improve hover smoothness */
+.product-card {
+  transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.4s ease;
+  border-radius: 1.5rem;
+}
+
+/* Hover lift */
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent);
+}
+
+/* Product name hover color */
+.product-name {
+  transition: color 0.3s ease;
+}
+
+.product-card:hover .product-name {
+  color: var(--accent);
+}
+
+/* Glow ring on hover */
+.product-glow {
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+}
+
+.product-card:hover .product-glow {
+  opacity: 1;
+  box-shadow: 0 0 25px var(--accent);
+}
+
+/* Search bar smooth focus */
+.search-input {
+  border: 2px solid var(--card-border);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 6px var(--accent-light);
+}
+
+/* Checkbox (eco-only) improves visibility */
+.eco-checkbox {
+  accent-color: var(--accent);
+}
+
+/* Certified badge pulse fix */
+.certified-badge {
+  animation: pulseBadge 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseBadge {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}

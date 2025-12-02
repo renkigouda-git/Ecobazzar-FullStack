@@ -1,124 +1,163 @@
-<div class="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 relative overflow-hidden py-12 px-6">
+<div class="min-h-screen theme-background relative overflow-hidden py-12 px-6">
+
+  <!-- Floating Orbs -->
   <div class="absolute inset-0 -z-10 pointer-events-none">
-    <div class="absolute top-10 -left-20 w-96 h-96 bg-emerald-400/25 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-lime-400/15 rounded-full blur-3xl animate-pulse delay-500"></div>
+    <div class="absolute top-10 -left-20 w-96 h-96 rounded-full blur-3xl animate-pulse"
+         style="background: var(--orb-1)"></div>
+
+    <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse delay-1000"
+         style="background: var(--orb-2)"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-500 -translate-x-1/2 -translate-y-1/2"
+         style="background: var(--orb-3)"></div>
   </div>
 
   <div class="max-w-7xl mx-auto">
+
+    <!-- Greeting -->
     <div class="text-center mb-16">
-      <h1 class="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent leading-tight">
+      <h1 class="text-6xl md:text-7xl font-extrabold theme-heading">
         Hello, {{ name }}
       </h1>
-      <p class="mt-4 text-2xl text-gray-700 font-light">
+      <p class="mt-4 text-2xl font-light theme-text">
         Welcome back, {{ role === 'USER' ? 'Conscious Shopper' : role }}
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-10 mb-12">
-      <div class="p-10 rounded-3xl bg-white/90 backdrop-blur-xl border border-emerald-100 shadow-2xl">
-        <h3 class="text-3xl font-bold text-emerald-600 mb-6 text-center">Weekly Carbon Saved</h3>
-        <div class="relative h-80">
+    <!-- Weekly Reports -->
+    <div class="grid lg:grid-cols-2 gap-14 mb-20">
+
+      <!-- Weekly Carbon Saved -->
+      <div class="p-10 rounded-3xl theme-card chart-card shadow-2xl">
+        <h3 class="text-3xl font-bold theme-heading text-center mb-6">
+          Weekly Carbon Saved
+        </h3>
+        <div class="relative h-80 chart-inner">
           <canvas #savedCanvas class="block w-full h-full"></canvas>
         </div>
       </div>
 
-      <div class="p-10 rounded-3xl bg-white/90 backdrop-blur-xl border border-red-100 shadow-2xl">
-        <h3 class="text-3xl font-bold text-red-600 mb-6 text-center">Weekly Carbon Used</h3>
-        <div class="relative h-80">
+      <!-- Weekly Carbon Used -->
+      <div class="p-10 rounded-3xl theme-card chart-card shadow-2xl">
+        <h3 class="text-3xl font-bold theme-heading text-center mb-6">
+          Weekly Carbon Used
+        </h3>
+        <div class="relative h-80 chart-inner">
           <canvas #usedCanvas class="block w-full h-full"></canvas>
         </div>
       </div>
+
     </div>
 
+    <!-- Loading -->
     <div *ngIf="loading" class="text-center py-12">
-      <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-emerald-500 border-t-transparent"></div>
-      <p class="mt-4 text-xl text-gray-600">Loading your eco report…</p>
+      <div class="inline-block animate-spin rounded-full h-12 w-12 border-4"
+           [style.borderColor]="'var(--accent)'"
+           style="border-top-color: transparent"></div>
+      <p class="mt-4 text-xl theme-text">Loading your eco report…</p>
     </div>
 
+    <!-- Error -->
     <div *ngIf="error" class="text-center py-12">
-      <p class="text-2xl font-bold text-red-600 mb-4">{{ error }}</p>
-      <button (click)="loadReport()" class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-xl transition">
+      <p class="text-2xl font-bold theme-heading mb-4">{{ error }}</p>
+      <button (click)="loadReport()" class="theme-button px-8 py-3 rounded-xl shadow-xl">
         Try Again
       </button>
     </div>
 
+    <!-- Dashboard Content -->
     <div *ngIf="report && !loading" class="space-y-12">
+
+      <!-- Stats Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="p-8 rounded-3xl bg-white/90 backdrop-blur-xl border border-emerald-100 shadow-xl text-center">
-          <p class="text-gray-600 text-sm font-medium">Total Purchases</p>
-          <p class="text-6xl font-extrabold text-emerald-600 mt-4">{{ report.totalPurchase }}</p>
+
+        <div class="stat-card">
+          <p class="theme-text text-sm font-medium">Total Purchases</p>
+          <p class="text-6xl font-extrabold theme-heading mt-4">{{ report.totalPurchase }}</p>
         </div>
-        <div class="p-8 rounded-3xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200 shadow-xl text-center">
-          <p class="text-gray-600 text-sm font-medium">Total Spent</p>
-          <p class="text-5xl font-extrabold text-blue-700 mt-4">₹{{ report.totalSpent | number:'1.0-0' }}</p>
+
+        <div class="stat-card">
+          <p class="theme-text text-sm font-medium">Total Spent</p>
+          <p class="text-5xl font-extrabold theme-heading mt-4">
+            ₹{{ report.totalSpent | number:'1.0-0' }}
+          </p>
         </div>
-        <div class="p-8 rounded-3xl bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 shadow-xl text-center">
-          <p class="text-gray-600 text-sm font-medium">Carbon Used</p>
-          <p class="text-6xl font-extrabold text-red-600 mt-4">{{ report.totalCarbonUsed }} kg</p>
+
+        <div class="stat-card">
+          <p class="theme-text text-sm font-medium">Carbon Used</p>
+          <p class="text-6xl font-extrabold theme-heading mt-4">
+            {{ report.totalCarbonUsed }} kg
+          </p>
         </div>
-        <div class="p-8 rounded-3xl bg-gradient-to-br from-emerald-50 to-lime-50 border border-emerald-200 shadow-xl text-center">
-          <p class="text-gray-600 text-sm font-medium">Carbon Saved</p>
-          <p class="text-6xl font-extrabold mt-4" [ngClass]="report.totalCarbonSaved > 0 ? 'text-emerald-600' : 'text-gray-400'">
+
+        <div class="stat-card">
+          <p class="theme-text text-sm font-medium">Carbon Saved</p>
+          <p class="text-6xl font-extrabold mt-4"
+             [style.color]="report.totalCarbonSaved > 0 ? 'var(--accent)' : 'gray'">
             {{ report.totalCarbonSaved }} kg
           </p>
-          <p *ngIf="report.totalCarbonSaved > 0" class="text-2xl mt-2 text-emerald-600 font-bold">You're a hero!</p>
+
+          <p *ngIf="report.totalCarbonSaved > 0"
+             class="text-2xl mt-2 font-bold"
+             style="color: var(--accent)">You're a hero!</p>
         </div>
+
       </div>
 
-      <div class="relative p-12 rounded-3xl shadow-2xl overflow-hidden text-white text-center bg-gradient-to-br" [ngClass]="getBadgeColor()">
-        <div class="absolute inset-0 opacity-30 bg-white/20 backdrop-blur-sm"></div>
-        <div class="relative z-10">
-          <p class="text-2xl font-light opacity-90">Your Current Eco Badge</p>
-          <p class="text-7xl font-black mt-6 drop-shadow-2xl tracking-tight">{{ report.ecoBadge }}</p>
-          <p class="mt-6 text-xl opacity-90">
-            {{ report.totalCarbonSaved > 0 ? 'Keep making the planet proud!' : 'Start saving carbon today!' }}
-          </p>
-        </div>
+      <!-- ECO Badge -->
+      <div class="eco-badge-card theme-card shadow-2xl">
+        <p class="text-2xl font-light theme-text">Your Current Eco Badge</p>
+        <p class="text-7xl font-black theme-heading mt-6 tracking-tight">{{ report.ecoBadge }}</p>
+        <p class="mt-6 text-xl theme-text">
+          {{ report.totalCarbonSaved > 0 ? 'Keep making the planet proud!' : 'Start saving carbon today!' }}
+        </p>
       </div>
 
+      <!-- Navigation Buttons -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-        <a routerLink="/products" class="group flex items-center justify-center gap-6 py-8 rounded-3xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-2xl font-bold shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition-all duration-500">
-          <span>Browse Eco Products</span>
-        </a>
-        <a routerLink="/cart" class="group flex items-center justify-center gap-6 py-8 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-2xl font-bold shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition-all duration-500">
-          <span>Go to Cart</span>
-        </a>
+        <a routerLink="/products" class="dashboard-btn">Browse Eco Products</a>
+        <a routerLink="/cart" class="dashboard-btn">Go to Cart</a>
       </div>
 
+      <!-- Role Options -->
       <div *ngIf="role === 'USER'" class="grid md:grid-cols-2 gap-10 mt-8">
-        <div class="p-10 rounded-3xl bg-gradient-to-br from-teal-500 to-cyan-600 text-white shadow-2xl text-center">
-          <h3 class="text-4xl font-black mb-6">Sell on EcoBazaar</h3>
-          <p class="text-xl opacity-90 mb-8">Join thousands of eco-conscious sellers</p>
-          <button (click)="requestSellerAccess()" [disabled]="sellerRequesting || hasPendingSellerRequest"
-                  class="px-10 py-5 bg-white text-cyan-600 font-bold text-xl rounded-2xl hover:bg-gray-100 transition-all shadow-xl">
+
+        <div class="action-card theme-card shadow-2xl">
+          <h3 class="card-heading">Sell on EcoBazaar</h3>
+          <p class="card-text">Join thousands of eco-conscious sellers</p>
+
+          <button (click)="requestSellerAccess()"
+                  [disabled]="sellerRequesting || hasPendingSellerRequest"
+                  class="theme-button px-10 py-5 rounded-2xl shadow-xl">
             <span *ngIf="!hasPendingSellerRequest && !sellerRequesting">Become a Seller</span>
             <span *ngIf="hasPendingSellerRequest">Request Pending</span>
             <span *ngIf="sellerRequesting">Sending...</span>
           </button>
-          <p *ngIf="sellerRequestSuccess" class="mt-6 text-green-200 font-bold">Request sent! Awaiting approval</p>
         </div>
 
-        <div class="p-10 rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-2xl text-center">
-          <h3 class="text-4xl font-black mb-6">Help Moderate</h3>
-          <p class="text-xl opacity-90 mb-8">Keep EcoBazaar green and trustworthy</p>
-          <button (click)="requestAdminAccess()" [disabled]="requesting || hasPendingRequest"
-                  class="px-10 py-5 bg-white text-indigo-600 font-bold text-xl rounded-2xl hover:bg-gray-100 transition-all shadow-xl">
+        <div class="action-card theme-card shadow-2xl">
+          <h3 class="card-heading">Help Moderate</h3>
+          <p class="card-text">Keep EcoBazaar green and trustworthy</p>
+
+          <button (click)="requestAdminAccess()"
+                  [disabled]="requesting || hasPendingRequest"
+                  class="theme-button px-10 py-5 rounded-2xl shadow-xl">
             <span *ngIf="!hasPendingRequest && !requesting">Become an Admin</span>
             <span *ngIf="hasPendingRequest">Request Pending</span>
             <span *ngIf="requesting">Sending...</span>
           </button>
-          <p *ngIf="requestSuccess" class="mt-6 text-green-200 font-bold">Request sent! We’ll review soon</p>
         </div>
+
       </div>
+
     </div>
 
+    <!-- No data -->
     <div *ngIf="!loading && !report" class="text-center py-12">
-      <p class="text-3xl font-bold text-gray-600 mb-4">No impact data yet</p>
-      <p class="text-lg text-gray-500">Start shopping consciously to see your footprint!</p>
-      <a routerLink="/products" class="mt-6 inline-block px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold rounded-2xl shadow-2xl transition">
-        Explore Products
-      </a>
+      <p class="text-3xl font-bold theme-heading mb-4">No impact data yet</p>
+      <p class="text-lg theme-text">Start shopping consciously to see your footprint!</p>
+      <a routerLink="/products" class="mt-6 inline-block px-10 py-4 rounded-2xl theme-button text-lg font-bold shadow-2xl">Explore Products</a>
     </div>
+
   </div>
 </div>

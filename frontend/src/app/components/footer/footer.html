@@ -1,53 +1,69 @@
-<footer class="relative overflow-hidden py-20 text-center bg-gradient-to-t 
-                from-emerald-50 via-green-50 to-teal-50
-                border-t-4 border-emerald-600">
+<footer
+  class="relative overflow-hidden py-20 text-center theme-background border-t-4"
+  style="border-color: var(--accent)"
+>
 
-  <!-- Floating Eco Orbs (light mode only) -->
+  <!-- Floating Orbs (auto-colored per theme) -->
   <div class="absolute inset-0 -z-10 pointer-events-none opacity-60">
-    <div class="absolute bottom-10 left-10 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-20 w-96 h-96 bg-teal-400/15 rounded-full blur-3xl animate-pulse delay-700"></div>
-    <div class="absolute bottom-32 left-1/2 -translate-x-1/2 w-72 h-72 bg-lime-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <div
+      class="absolute bottom-10 left-10 w-80 h-80 rounded-full blur-3xl animate-pulse"
+      style="background: var(--orb-1)"
+    ></div>
+
+    <div
+      class="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse delay-700"
+      style="background: var(--orb-2)"
+    ></div>
+
+    <div
+      class="absolute bottom-32 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full blur-3xl animate-pulse delay-1000"
+      style="background: var(--orb-3)"
+    ></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6">
 
     <!-- Main Message -->
-    <h2 class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 
-                 bg-clip-text text-transparent leading-tight mb-6">
+    <h2 class="text-5xl md:text-6xl font-extrabold theme-heading leading-tight mb-6 footer-title">
       Thank You for Choosing Earth
     </h2>
 
-    <p class="text-2xl md:text-3xl text-gray-700 font-light mb-12 max-w-4xl mx-auto">
-      Every purchase on EcoBazaar supports sustainable makers, reduces carbon, and helps build a cleaner tomorrow.
+    <p
+      class="text-2xl md:text-3xl theme-text opacity-90 font-light mb-12 max-w-4xl mx-auto footer-subtitle"
+    >
+      Every purchase on EcoBazaar supports sustainable makers, reduces carbon,
+      and helps build a cleaner tomorrow.
     </p>
 
     <!-- Impact Stats -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-      <div class="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border border-emerald-100 shadow-2xl">
-        <p class="text-6xl font-black text-emerald-600">127K+</p>
-        <p class="mt-3 text-xl text-gray-700">Conscious Shoppers</p>
+      <div class="footer-stat-card theme-card">
+        <p class="text-6xl font-black theme-heading">127K+</p>
+        <p class="mt-3 text-xl theme-text">Conscious Shoppers</p>
       </div>
-      <div class="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border border-emerald-100 shadow-2xl">
-        <p class="text-6xl font-black text-emerald-600">8.4M kg</p>
-        <p class="mt-3 text-xl text-gray-700">CO₂ Saved</p>
+
+      <div class="footer-stat-card theme-card">
+        <p class="text-6xl font-black theme-heading">8.4M kg</p>
+        <p class="mt-3 text-xl theme-text">CO₂ Saved</p>
       </div>
-      <div class="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border border-emerald-100 shadow-2xl">
-        <p class="text-6xl font-black text-emerald-600">42K+</p>
-        <p class="mt-3 text-xl text-gray-700">Eco Products</p>
+
+      <div class="footer-stat-card theme-card">
+        <p class="text-6xl font-black theme-heading">42K+</p>
+        <p class="mt-3 text-xl theme-text">Eco Products</p>
       </div>
     </div>
 
     <!-- Final Line -->
-    <div class="pt-10 border-t-2 border-emerald-200">
-      <p class="text-xl font-medium text-gray-600">
-        © 2025 
-        <span class="font-black text-emerald-600">EcoBazaar</span>
-        — Built for a Cleaner Planet
+    <div class="pt-10" style="border-top: 2px solid var(--accent)">
+      <p class="text-xl font-medium theme-text">
+        © 2025
+        <span class="font-black theme-heading">EcoBazaar</span> —
+        Built for a Cleaner Planet
       </p>
-      <p class="mt-4 text-3xl">
+
+      <p class="mt-4 text-3xl theme-heading footer-final-text">
         Together, we’re changing the world — one conscious choice at a time.
       </p>
     </div>
-
   </div>
 </footer>

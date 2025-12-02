@@ -1,0 +1,164 @@
+@use "tailwindcss";
+
+/* ======================================================
+   NAVBAR WRAPPER
+====================================================== */
+:host {
+  width: 100%;
+}
+
+/* ======================================================
+   TOOLBAR (theme aware)
+====================================================== */
+mat-toolbar.theme-navbar {
+  @apply shadow-xl border-b;
+  background: var(--surface) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text) !important;
+  backdrop-filter: blur(20px);
+  transition: 0.3s ease;
+}
+
+/* Active route */
+.active-link {
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid var(--accent) !important;
+  padding-bottom: 3px;
+}
+
+/* ======================================================
+   MATERIAL MENU — ALWAYS SOLID
+====================================================== */
+
+.mat-mdc-menu-panel {
+  background-color: var(--surface) !important;   
+  border: 1px solid var(--card-border) !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  padding: 6px 0 !important;
+}
+
+.mat-mdc-menu-content {
+  background-color: var(--surface) !important;
+}
+
+.mdc-elevation-overlay {
+  background: transparent !important;
+}
+
+/* ======================================================
+   DARK THEMES — Strong Solid Box
+====================================================== */
+body.theme-dark-purple .mat-mdc-menu-panel,
+body.theme-dark-ocean .mat-mdc-menu-panel,
+body.theme-amoled .mat-mdc-menu-panel {
+  background: #0d0d0d !important;
+  border-color: rgba(255,255,255,0.18) !important;
+  color: #fff !important;
+}
+
+/* ======================================================
+   NEON THEMES — Premium Solid Box
+====================================================== */
+body.theme-neon-pink .mat-mdc-menu-panel {
+  background: #3a003d !important;
+  border-color: #ff1cf7 !important;
+}
+
+body.theme-neon-blue .mat-mdc-menu-panel {
+  background: #002733 !important;
+  border-color: #00eaff !important;
+}
+
+body.theme-neon-green .mat-mdc-menu-panel {
+  background: #003300 !important;
+  border-color: #39ff14 !important;
+}
+
+/* ======================================================
+   THEME MENU ITEMS
+====================================================== */
+.theme-menu-item {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 18px !important;
+  border-radius: 8px;
+  color: var(--text) !important;    
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Default hover */
+.theme-menu-item:hover {
+  background: var(--accent-light) !important;
+  color: var(--accent) !important;
+}
+
+/* ====== Neon Hover Effects ====== */
+body.theme-neon-pink .theme-menu-item:hover {
+  background: rgba(255, 28, 247, 0.20) !important;
+  color: #ff1cf7 !important;
+  text-shadow: 0 0 6px #ff1cf7;
+}
+
+body.theme-neon-blue .theme-menu-item:hover {
+  background: rgba(0, 234, 255, 0.20) !important;
+  color: #00eaff !important;
+  text-shadow: 0 0 6px #00eaff;
+}
+
+body.theme-neon-green .theme-menu-item:hover {
+  background: rgba(57, 255, 20, 0.20) !important;
+  color: #39ff14 !important;
+  text-shadow: 0 0 6px #39ff14;
+}
+
+/* Divider */
+.mat-mdc-menu-divider {
+  border-color: var(--card-border) !important;
+}
+
+/* ======================================================
+   BUTTONS (theme aware)
+====================================================== */
+
+button[mat-stroked-button] {
+  border-color: var(--card-border) !important;
+  color: var(--text) !important;
+}
+
+button[mat-stroked-button]:hover {
+  background: var(--primary-50) !important;
+}
+
+button[mat-raised-button] {
+  background: var(--button-bg) !important;
+  color: var(--button-text) !important;
+}
+
+button[mat-raised-button]:hover {
+  background: var(--button-hover) !important;
+}
+
+/* ======================================================
+   MOBILE
+====================================================== */
+@media (max-width: 1024px) {
+  nav {
+    display: none !important;
+  }
+}
+/* Force navbar links readable in all themes */
+.nav-link {
+  color: var(--heading) !important;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+}
