@@ -16,6 +16,7 @@ import { UserReportService } from '../../services/user-report';
 import { catchError, finalize, of } from 'rxjs';
 import Chart from 'chart.js/auto';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 
 export interface UserReport {
   userId: number;
@@ -39,6 +40,7 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
   private http = inject(HttpClient);
   private toastr = inject(ToastrService);
   private ngZone = inject(NgZone);
+private baseUrl = `${environment.apiUrl}/api`;
 
   name = localStorage.getItem('name') ?? 'User';
   role = localStorage.getItem('role')?.replace('ROLE_', '') ?? 'GUEST';
@@ -120,7 +122,8 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
       FETCH WEEKLY DATA
   ========================================================== */
   private fetchWeeklyData() {
-    this.http.get<any[]>('/api/reports/user/weekly').subscribe({
+    this.http.get<any[]>(`${this.baseUrl}/reports/user/weekly`)
+.subscribe({
       next: (data) => {
         const labels = data.map((d) => d.day);
         const saved = data.map((d) => d.saved);
@@ -266,7 +269,8 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
       ADMIN REQUEST
   ========================================================== */
   checkPendingAdminRequest() {
-    this.http.get<boolean>('/api/admin-request/has-pending').subscribe({
+    this.http.get<boolean>(`${this.baseUrl}/admin-request/has-pending`)
+.subscribe({
       next: (res) => (this.hasPendingRequest = res),
       error: () => (this.hasPendingRequest = false)
     });
@@ -274,7 +278,8 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
 
   requestAdminAccess() {
     this.requesting = true;
-    this.http.post('/api/admin-request/request', {}).subscribe({
+    this.http.post(`${this.baseUrl}/admin-request/request`, {})
+.subscribe({
       next: () => {
         this.requestSuccess = true;
         this.hasPendingRequest = true;
@@ -296,7 +301,8 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
       SELLER REQUEST
   ========================================================== */
   checkPendingSellerRequest() {
-    this.http.get<boolean>('/api/admin-request/has-pending').subscribe({
+    this.http.get<boolean>(`${this.baseUrl}/seller-request/has-pending`)
+.subscribe({
       next: (res) => (this.hasPendingSellerRequest = res),
       error: () => (this.hasPendingSellerRequest = false)
     });
@@ -304,7 +310,8 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
 
   requestSellerAccess() {
     this.sellerRequesting = true;
-    this.http.post('/api/seller-request/request', {}).subscribe({
+    this.http.post(`${this.baseUrl}/seller-request/request`, {})
+.subscribe({
       next: () => {
         this.sellerRequestSuccess = true;
         this.hasPendingSellerRequest = true;

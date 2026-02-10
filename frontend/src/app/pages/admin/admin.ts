@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 
 interface PlatformReport {
   totalOrders: number;
@@ -45,6 +46,7 @@ interface PendingAdminRequest {
   styleUrls: ['./admin.scss']
 })
 export class Admin implements OnInit {
+  private baseUrl = `${environment.apiUrl}/api`;
   private http = inject(HttpClient);
   private datePipe = inject(DatePipe);
   private toastr = inject(ToastrService);
@@ -69,7 +71,8 @@ export class Admin implements OnInit {
   loadAllData(): void {
     this.loading = true;
 
-    this.http.get<PlatformReport>('/api/admin/reports').subscribe({
+    this.http.get<PlatformReport>(`${this.baseUrl}/admin/reports`)
+.subscribe({
       next: (r) => (this.report = r),
       error: () => this.toastr.error('Failed to load stats')
     });
@@ -82,21 +85,24 @@ export class Admin implements OnInit {
   }
 
   private loadPendingProducts(): void {
-    this.http.get<PendingProduct[]>('/api/admin/pending-products').subscribe({
+    this.http.get<PendingProduct[]>(`${this.baseUrl}/admin/pending-products`)
+.subscribe({
       next: (d) => (this.pendingProducts = d),
       error: () => this.toastr.error('Failed to load products')
     });
   }
 
   private loadPendingSellers(): void {
-    this.http.get<PendingSeller[]>('/api/admin/pending-sellers').subscribe({
+    this.http.get<PendingSeller[]>(`${this.baseUrl}/admin/pending-sellers`)
+.subscribe({
       next: (d) => (this.pendingSellers = d),
       error: () => this.toastr.error('Failed to load sellers')
     });
   }
 
   private loadPendingAdminRequests(): void {
-    this.http.get<PendingAdminRequest[]>('/api/admin-request/pending').subscribe({
+    this.http.get<PendingAdminRequest[]>(`${this.baseUrl}/admin-request/pending`)
+.subscribe({
       next: (d) => (this.pendingAdminRequests = d),
       error: () => this.toastr.error('Failed to load admin requests')
     });
@@ -106,7 +112,8 @@ export class Admin implements OnInit {
     if (this.processing.has(id)) return;
     this.processing.add(id);
 
-    this.http.put(`/api/admin/approveProduct/${id}`, {}).subscribe({
+    this.http.put(`${this.baseUrl}/admin/approveProduct/${id}`, {})
+.subscribe({
       next: () => {
         this.toastr.success('Eco Product Certified');
         this.loadAllData();
@@ -121,7 +128,8 @@ export class Admin implements OnInit {
     if (!confirm('Reject this product? This will clear the eco-request.')) return;
 
     this.processing.add(id);
-    this.http.put(`/api/admin/rejectProduct/${id}`, {}).subscribe({
+    this.http.put(`${this.baseUrl}/admin/rejectProduct/${id}`, {})
+.subscribe({
       next: () => {
         this.toastr.success('Product request rejected');
         this.loadAllData();
@@ -135,7 +143,8 @@ export class Admin implements OnInit {
     if (this.processing.has(id)) return;
     this.processing.add(id);
 
-    this.http.put(`/api/admin/approveSeller/${id}`, {}).subscribe({
+    this.http.put(`${this.baseUrl}/admin/approveSeller/${id}`, {})
+.subscribe({
       next: () => {
         this.toastr.success('Seller Approved');
         this.loadAllData();
@@ -149,7 +158,8 @@ export class Admin implements OnInit {
     if (this.processing.has(id)) return;
     this.processing.add(id);
 
-    this.http.post(`/api/admin-request/approve/${id}`, {}).subscribe({
+    this.http.post(`${this.baseUrl}/admin-request/approve/${id}`, {})
+.subscribe({
       next: () => {
         this.toastr.success('New Admin Added');
         this.loadAllData();
@@ -163,7 +173,8 @@ export class Admin implements OnInit {
     if (this.processing.has(id)) return;
     this.processing.add(id);
 
-    this.http.post(`/api/admin-request/reject/${id}`, {}).subscribe({
+    this.http.post(`${this.baseUrl}/admin-request/reject/${id}`, {})
+.subscribe({
       next: () => {
         this.toastr.success('Request Rejected');
         this.loadAllData();
@@ -183,7 +194,8 @@ export class Admin implements OnInit {
 
     this.isDownloading = true;
     this.http
-      .get('/api/admin/reports/export', {
+      .get(`${this.baseUrl}/admin/reports/export`
+, {
         responseType: 'blob',
         headers: { Authorization: `Bearer ${token}` }
       })
