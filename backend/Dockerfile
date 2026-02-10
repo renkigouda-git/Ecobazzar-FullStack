@@ -2,8 +2,11 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-COPY target/ecobazzar-0.0.1-SNAPSHOT.jar app.jar
+# Copy full project
+COPY . .
 
-EXPOSE 8080
+# Build jar inside Docker
+RUN ./mvnw clean package -DskipTests
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Run jar
+ENTRYPOINT ["java","-jar","target/ecobazzar-0.0.1-SNAPSHOT.jar"]
