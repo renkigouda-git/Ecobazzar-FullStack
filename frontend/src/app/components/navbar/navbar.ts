@@ -10,6 +10,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,13 +28,19 @@ import { CartService } from '../../services/cart';
   styleUrl: './navbar.scss'
 })
 export class Navbar implements OnInit, OnDestroy {
+  mobileMenuOpen = false;
+
   auth = inject(AuthService);
   private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
+  private readonly themeService = inject(ThemeService);
+
   cartCount = 0;
 
   ngOnInit(): void {
+   
+
     this.updateCartCountIfNeeded();
 
     this.auth.loggedIn$.pipe(takeUntil(this.destroy$)).subscribe(() => {
@@ -42,10 +49,13 @@ export class Navbar implements OnInit, OnDestroy {
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd), takeUntil(this.destroy$))
-      .subscribe(() => this.updateCartCountIfNeeded());
+      .subscribe(() => {
+  this.mobileMenuOpen = false;
+  this.updateCartCountIfNeeded();
+});
 
-    const saved = localStorage.getItem('theme');
-    if (saved) this.setTheme(saved);
+
+    
   }
 
   private updateCartCountIfNeeded(): void {
@@ -76,26 +86,10 @@ export class Navbar implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  /* ======================================================
-     🔥 MASTER THEME SWITCHER — ALL 10 THEMES
-  ====================================================== */
   setTheme(theme: string) {
-    const themes = [
-      'theme-snow',
-      'theme-azure',
-      'theme-forest',
-      'theme-rose',
-      'theme-neon-pink',
-      'theme-neon-blue',
-      'theme-dark-purple',
-      'theme-dark-ocean',
-      'theme-amoled'
-    ];
+  this.themeService.setTheme(theme);
+}
 
-    document.body.classList.remove(...themes);
-    document.body.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }
 
   /* Theme Menu List */
   themes = [

@@ -21,7 +21,7 @@
 
     <!-- 🔎 Search + Filter Bar -->
     <div class="mb-12 theme-card shadow-2xl p-6 
-                flex flex-col md:flex-row gap-6 items-center justify-between">
+            flex flex-col md:flex-row gap-6 items-center justify-between">
 
       <!-- Search -->
       <div class="relative flex-1 max-w-2xl">
@@ -73,7 +73,7 @@
 
     <!-- 🛒 Products Grid -->
     <div *ngIf="!loading && !error"
-         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+         class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
       <a *ngFor="let p of filtered; trackBy: trackById"
          [routerLink]="['/products', p.id]"

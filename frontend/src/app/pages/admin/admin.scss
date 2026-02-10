@@ -172,3 +172,64 @@
 .admin-reject-btn {
   color: var(--accent) !important;
 }
+/* ==========================================================
+   MOBILE RESPONSIVE FIXES (SAFE LAYER ONLY)
+   DOES NOT TOUCH DESKTOP UI
+========================================================== */
+
+@media (max-width: 1024px) {
+
+  /* Reduce huge heading size */
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  /* Improve header layout */
+  .flex.md\:flex-row {
+    text-align: center;
+    gap: 20px;
+  }
+
+  /* Reduce card padding */
+  .admin-info-card,
+  .admin-panel-card,
+  .admin-item-card {
+    padding: 24px !important;
+  }
+
+  /* Responsive number scaling */
+  .admin-info-number {
+    font-size: 36px !important;
+  }
+
+  /* Stack buttons vertically */
+  .admin-item-card .flex {
+    flex-direction: column !important;
+  }
+
+  .admin-approve-btn,
+  .admin-reject-btn {
+    width: 100% !important;
+  }
+
+}
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .admin-info-number {
+    font-size: 30px !important;
+  }
+
+  .admin-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+}

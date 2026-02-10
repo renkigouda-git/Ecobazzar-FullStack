@@ -62,3 +62,368 @@
   50% { transform: scale(1.08); opacity: 0.9; }
   100% { transform: scale(1); opacity: 1; }
 }
+/* ==================================================
+   PRODUCT LIST MOBILE FIX
+   Desktop untouched
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Page spacing */
+  .min-h-screen {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Hero Title */
+  h1 {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Hero subtitle */
+  p.text-xl,
+  p.text-2xl {
+    font-size: 1rem !important;
+  }
+
+  /* Search + Filter container */
+  .flex.flex-col.md\:flex-row {
+    padding: 18px !important;
+    gap: 16px !important;
+  }
+
+  /* Search input */
+  input[type="text"] {
+    padding: 14px 18px !important;
+    padding-left: 46px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Search icon position */
+  svg.absolute {
+    width: 18px !important;
+    height: 18px !important;
+    left: 14px !important;
+  }
+
+  /* Toggle checkbox row */
+  label.flex.items-center {
+    justify-content: space-between !important;
+    width: 100%;
+  }
+
+  /* Product grid gap */
+  .grid {
+    gap: 18px !important;
+  }
+
+  /* Product image height */
+  .group .relative.h-64 {
+    height: 180px !important;
+  }
+
+  /* Product title */
+  h3 {
+    font-size: 1rem !important;
+    min-height: auto !important;
+  }
+
+  /* Price */
+  .text-3xl {
+    font-size: 1.4rem !important;
+  }
+
+  /* CO2 pill */
+  .eco-pill {
+    font-size: 0.75rem !important;
+    padding: 4px 10px !important;
+  }
+
+  /* Card padding */
+  .group .p-6 {
+    padding: 16px !important;
+  }
+
+  /* Empty state spacing */
+  .py-32 {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+}
+
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .group .relative.h-64 {
+    height: 160px !important;
+  }
+
+  .text-3xl {
+    font-size: 1.2rem !important;
+  }
+
+}
+/* =====================================
+   MOBILE PRODUCT CARD IMPROVEMENTS
+===================================== */
+
+@media (max-width: 640px) {
+
+  /* Reduce card padding */
+  .theme-card {
+    padding: 14px !important;
+  }
+
+  /* Product image height */
+  .theme-card .relative.h-64 {
+    height: 150px !important;
+  }
+
+  /* Product content spacing */
+  .theme-card .p-6 {
+    padding: 14px !important;
+  }
+
+  /* Product name size */
+  .theme-card h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+    min-height: auto !important;
+  }
+
+  /* Price row spacing */
+  .theme-card .mt-4 {
+    margin-top: 6px !important;
+  }
+
+  /* Price text */
+  .theme-card .text-3xl {
+    font-size: 1.2rem !important;
+  }
+
+  /* CO2 label */
+  .eco-pill {
+    font-size: 0.7rem !important;
+  }
+
+  /* Description text */
+  .theme-card p.text-sm {
+    font-size: 0.75rem !important;
+    margin-top: 6px !important;
+  }
+
+}
+/* =====================================
+   MOBILE SEARCH SECTION FIX
+===================================== */
+
+@media (max-width: 640px) {
+
+  /* Search card spacing */
+  .theme-card.shadow-2xl {
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+
+  /* Search input size */
+  .theme-input {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Search icon alignment */
+  .theme-input + svg,
+  svg.text-accent {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+}
+@media (max-width: 640px) {
+
+  label.select-none {
+    width: 100%;
+    justify-content: flex-start !important;
+    margin-top: 6px;
+  }
+
+  label.select-none span {
+    font-size: 0.95rem !important;
+  }
+
+  label.select-none input {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+}
+/* ===========================
+   MOBILE PRODUCT CARD FIX
+=========================== */
+
+/* Extra small devices (320px - 360px) */
+@media (max-width: 360px) {
+
+  /* Reduce product card padding */
+  a.group {
+    border-radius: 1.2rem;
+  }
+
+  a.group .p-6 {
+    padding: 12px !important;
+  }
+
+  /* Product Image Height */
+  a.group .h-64 {
+    height: 150px !important;
+  }
+
+  /* Product Name */
+  a.group h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.2rem !important;
+    min-height: auto !important;
+  }
+
+  /* Price */
+  a.group .text-3xl {
+    font-size: 1.2rem !important;
+  }
+
+  /* CO2 Pill */
+  .eco-pill {
+    font-size: 0.65rem !important;
+  }
+
+  /* Description */
+  a.group p.text-sm {
+    font-size: 0.7rem !important;
+    line-height: 1rem !important;
+  }
+
+}
+
+
+/* Small devices (361px - 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+
+  a.group .h-64 {
+    height: 180px !important;
+  }
+
+  a.group h3 {
+    font-size: 1.05rem !important;
+  }
+
+  a.group .text-3xl {
+    font-size: 1.4rem !important;
+  }
+
+  .eco-pill {
+    font-size: 0.75rem !important;
+  }
+
+}
+/* Keep price and CO2 aligned nicely */
+a.group .mt-4 {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+/* Prevent ugly name break */
+a.group h3 {
+  word-break: break-word;
+}
+/* ===========================
+   MOBILE SEARCH BAR FIX
+=========================== */
+
+@media (max-width: 640px) {
+
+  .theme-card.flex {
+    padding: 16px !important;
+  }
+
+  /* Stack eco checkbox below search */
+  .theme-card.flex label {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Search input smaller */
+  .theme-card.flex input {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    font-size: 0.95rem !important;
+  }
+
+}
+a.group {
+  transition: all 0.3s ease;
+}
+/* ==========================================
+   MOBILE SEARCH + ECO TOGGLE PERFECT FIX
+========================================== */
+
+@media (max-width: 640px) {
+
+  /* Search + filter container */
+  .theme-card.shadow-2xl {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+
+  /* 🔥 Make search bar FULL WIDTH */
+  .theme-card.shadow-2xl .relative.flex-1 {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .theme-card.shadow-2xl input[type="text"] {
+    width: 100% !important;
+    padding: 14px 16px 14px 44px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Search icon alignment */
+  .theme-card.shadow-2xl svg.absolute {
+    left: 14px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* =====================================
+     ECO CHECKBOX FIX
+  ===================================== */
+
+  label.select-none {
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;  /* remove big gap */
+    gap: 10px !important;                    /* nice spacing */
+    margin-top: 4px !important;
+  }
+
+  /* Checkbox size */
+  label.select-none input {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Text beside checkbox */
+  label.select-none span {
+    font-size: 0.95rem !important;
+  }
+
+}

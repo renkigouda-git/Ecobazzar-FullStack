@@ -41,3 +41,157 @@ tr:hover {
 .seller-stats-number {
   color: var(--heading) !important;
 }
+/* ==================================================
+   SELLER DASHBOARD MOBILE FIX
+   Desktop untouched
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Reduce global page spacing */
+  .py-12 {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Header layout */
+  .flex.flex-col.sm\:flex-row {
+    align-items: flex-start !important;
+    gap: 18px !important;
+  }
+
+  /* Dashboard title */
+  h1 {
+    font-size: 2.2rem !important;
+  }
+
+  /* Header subtitle */
+  .text-lg {
+    font-size: 0.95rem !important;
+  }
+
+  /* Add product button */
+  .theme-button {
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stats cards spacing */
+  .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-5 {
+    gap: 16px !important;
+  }
+
+  /* Stats numbers */
+  .seller-stats-number {
+    font-size: 2.1rem !important;
+  }
+
+  /* Stats label */
+  .seller-stats-label {
+    font-size: 0.85rem !important;
+  }
+
+  /* Chart card padding */
+  .chart-container {
+    height: 260px !important;
+  }
+
+  /* Seller badge box */
+  .text-6xl {
+    font-size: 2.5rem !important;
+  }
+
+  /* Table improvements */
+  table {
+    font-size: 0.85rem !important;
+  }
+
+  th, td {
+    padding: 14px 16px !important;
+  }
+
+  /* Product image inside table */
+  td img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  /* Action buttons */
+  td button {
+    font-size: 0.85rem !important;
+  }
+
+}
+
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .seller-stats-number {
+    font-size: 1.8rem !important;
+  }
+
+  /* Chart smaller */
+  .chart-container {
+    height: 220px !important;
+  }
+
+  /* Reduce orb intensity */
+  .absolute.w-96,
+  .absolute.w-80,
+  .absolute.w-72 {
+    opacity: 0.35 !important;
+  }
+
+}
+/* ============================================
+   DESKTOP BADGE ALIGNMENT FIX
+   (Mobile untouched)
+============================================ */
+
+@media (min-width: 1024px) {
+
+  /* Target badge card */
+  .seller-badge-card {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 380px; /* match chart height */
+    padding: 3rem 2.5rem;
+
+  }
+
+  /* Badge heading */
+  .seller-badge-title {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Main badge text */
+  .seller-badge-text {
+
+    font-size: 3.2rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+
+  }
+
+  /* Badge subtitle */
+  .seller-badge-sub {
+
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    opacity: 0.75;
+
+  }
+
+}

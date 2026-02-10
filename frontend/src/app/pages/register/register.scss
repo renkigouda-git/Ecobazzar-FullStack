@@ -69,3 +69,83 @@ input:focus {
 .error-text {
   color: #e11d48; /* rose-600 */
 }
+/* ==================================================
+   REGISTER PAGE MOBILE FIX
+   Desktop untouched
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Stop vertical forced centering */
+  .min-h-screen {
+    align-items: flex-start !important;
+    padding-top: 70px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Reduce card width feeling */
+  .max-w-md {
+    max-width: 420px !important;
+  }
+
+  /* Card padding */
+  .theme-card {
+    padding: 22px !important;
+  }
+
+  /* Title */
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  /* Subtitle */
+  p.text-lg {
+    font-size: 0.95rem !important;
+  }
+
+  /* Input fields */
+  input {
+    padding: 14px 18px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Submit button */
+  .register-cta {
+    padding: 16px !important;
+    font-size: 1.05rem !important;
+  }
+
+  /* Bottom login text */
+  .mt-10 {
+    margin-top: 26px !important;
+  }
+
+}
+
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.7rem !important;
+  }
+
+  .theme-card {
+    padding: 18px !important;
+  }
+
+  input {
+    padding: 12px 16px !important;
+  }
+
+  .register-cta {
+    padding: 14px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Reduce orb brightness */
+  .orb {
+    opacity: 0.35 !important;
+  }
+
+}

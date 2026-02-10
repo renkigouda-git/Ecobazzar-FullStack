@@ -75,3 +75,157 @@
   filter: blur(80px);
   opacity: 0.6;
 }
+/* ==========================================================
+   HOME PAGE MOBILE RESPONSIVE FIX
+   Desktop untouched
+========================================================== */
+
+@media (max-width: 1024px) {
+
+  /* Page vertical spacing */
+  .min-h-screen {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+  /* Title */
+  h1 {
+    font-size: 3rem !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Subtitle */
+  p.text-3xl,
+  p.text-5xl {
+    font-size: 1.3rem !important;
+  }
+
+  /* CTA buttons */
+  .theme-button {
+    font-size: 1.3rem !important;
+    padding: 16px 32px !important;
+  }
+
+  .theme-card {
+    padding: 16px !important;
+  }
+
+  /* CTA stack spacing */
+  .flex.flex-col.sm\:flex-row {
+    gap: 14px !important;
+  }
+
+  /* Stats grid spacing */
+  .grid.grid-cols-2 {
+    gap: 18px !important;
+    margin-top: 60px !important;
+  }
+
+  /* Stats numbers */
+  .text-6xl,
+  .text-5xl {
+    font-size: 2rem !important;
+  }
+
+  /* Stats labels */
+  .text-xl {
+    font-size: 0.95rem !important;
+  }
+
+}
+
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 2.2rem !important;
+  }
+
+  p.text-3xl,
+  p.text-5xl {
+    font-size: 1.1rem !important;
+  }
+
+  .theme-button {
+    font-size: 1.1rem !important;
+    padding: 14px 24px !important;
+  }
+
+  /* Reduce orb intensity */
+  .absolute.w-96,
+  .absolute.w-80,
+  .absolute.w-72 {
+    opacity: 0.35 !important;
+  }
+
+}
+/* ==================================================
+   HOME HEIGHT FIX (REMOVES HUGE EMPTY SPACE)
+================================================== */
+
+.home-wrapper {
+  min-height: auto;
+  display: block;
+}
+@media (min-width: 1024px) {
+  .home-wrapper {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+/* ===============================================
+   FINAL HERO GAP FIX
+   Removes forced vertical centering & 100vh stretch
+   Without changing layout appearance
+=============================================== */
+
+.min-h-screen.theme-background {
+
+  /* Stop forcing full viewport height */
+  min-height: auto !important;
+
+  /* Keep flex layout but align naturally */
+  align-items: flex-start !important;
+
+  /* Keep spacing nice */
+  padding-top: 120px !important;
+  padding-bottom: 80px !important;
+}
+
+/* Mobile tuning */
+@media (max-width: 768px) {
+
+  .min-h-screen.theme-background {
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+  }
+
+}
+/* =============================================
+   REAL FIX – Remove forced 100vh from hero
+============================================= */
+
+:host ::ng-deep .min-h-screen.theme-background {
+
+  min-height: unset !important;
+  height: auto !important;
+
+}
+.min-h-screen.theme-background {
+  align-items: flex-start !important;
+}
+.min-h-screen.theme-background {
+  padding-bottom: 2rem !important;
+}
+.min-h-screen.theme-background {
+  padding-top: 4rem !important;
+  padding-bottom: 2rem !important;
+}

@@ -22,3 +22,91 @@ input[type="file"]::file-selector-button {
 tr:hover {
   transition: background 0.25s ease;
 }
+/* ==================================================
+   SELLER PRODUCT FORM MOBILE FIX
+   Desktop untouched
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Remove vertical centering for mobile usability */
+  .min-h-screen {
+    align-items: flex-start !important;
+  }
+
+  /* Reduce top/bottom spacing */
+  .py-12 {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+  }
+
+  /* Header title */
+  h1 {
+    font-size: 2.2rem !important;
+  }
+
+  /* Header subtitle */
+  .text-lg {
+    font-size: 0.95rem !important;
+  }
+
+  /* Form input fields */
+  input,
+  textarea {
+    padding: 14px 18px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Labels */
+  label {
+    font-size: 0.95rem !important;
+  }
+
+  /* Price + Carbon section spacing */
+  .grid.md\:grid-cols-2 {
+    gap: 18px !important;
+  }
+
+  /* Upload preview image */
+  img {
+    max-height: 220px !important;
+  }
+
+  /* Checkbox eco box */
+  .p-6 {
+    padding: 18px !important;
+  }
+
+  /* Buttons */
+  button[type="submit"] {
+    font-size: 1rem !important;
+    padding: 16px !important;
+  }
+
+  button[type="button"] {
+    font-size: 0.95rem !important;
+    padding: 16px !important;
+  }
+
+}
+
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  img {
+    max-height: 180px !important;
+  }
+
+  /* Reduce orb intensity */
+  .absolute.w-96,
+  .absolute.w-80,
+  .absolute.w-72 {
+    opacity: 0.35 !important;
+  }
+
+}

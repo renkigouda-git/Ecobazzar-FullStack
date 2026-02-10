@@ -260,3 +260,90 @@
   --chart-fill: color-mix(in srgb, var(--accent) 22%, transparent);
   --chart-text: var(--text);
 }
+/* ==========================================================
+   GLOBAL SOLID PANEL SYSTEM
+   Removes transparency across all themes
+   Applies to dropdowns, popups, theme selectors, cards
+========================================================== */
+
+/* ------------------------------------
+   Base surface panels
+------------------------------------ */
+.theme-card,
+.theme-surface,
+.theme-panel,
+.theme-dropdown,
+.dropdown-panel,
+.modal-panel,
+.popover-panel {
+
+  /* Remove glass / blur */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* Force solid theme surface */
+  background: var(--card-bg) !important;
+
+  /* Border clarity */
+  border: 1px solid var(--card-border) !important;
+
+  /* Professional shadow */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+
+  opacity: 1 !important;
+}
+
+
+/* ------------------------------------
+   Ensure readable text inside panels
+------------------------------------ */
+.theme-card *,
+.theme-surface *,
+.theme-panel *,
+.theme-dropdown * {
+  color: var(--text);
+}
+
+
+/* ------------------------------------
+   Panel heading emphasis
+------------------------------------ */
+.theme-card h1,
+.theme-card h2,
+.theme-card h3,
+.theme-panel h1,
+.theme-panel h2,
+.theme-panel h3 {
+  color: var(--heading);
+}
+
+
+/* ------------------------------------
+   Hover states inside panels
+------------------------------------ */
+.theme-panel button:hover,
+.theme-dropdown button:hover,
+.theme-card button:hover {
+  background: var(--primary-50);
+  transition: 0.25s ease;
+}
+
+
+/* ------------------------------------
+   Dropdown menu items
+------------------------------------ */
+.theme-panel li:hover,
+.theme-dropdown li:hover {
+  background: var(--primary-50);
+  border-radius: 10px;
+}
+
+
+/* ------------------------------------
+   Remove accidental transparency classes
+------------------------------------ */
+[class*="bg-opacity"],
+[class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

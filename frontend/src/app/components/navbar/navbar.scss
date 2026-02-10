@@ -146,11 +146,7 @@ button[mat-raised-button]:hover {
 /* ======================================================
    MOBILE
 ====================================================== */
-@media (max-width: 1024px) {
-  nav {
-    display: none !important;
-  }
-}
+
 /* Force navbar links readable in all themes */
 .nav-link {
   color: var(--heading) !important;
@@ -161,4 +157,84 @@ button[mat-raised-button]:hover {
 .nav-link:hover {
   color: var(--accent) !important;
   transform: translateY(-2px);
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  mat-toolbar.theme-navbar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Logo shrink */
+  .theme-heading {
+    font-size: 1.6rem !important;
+  }
+
+  /* Right side spacing */
+  .flex.items-center.gap-6 {
+  gap: 0.7rem;
+  align-items: center;
+}
+
+
+  /* Hide welcome text */
+  .text-right {
+    display: none;
+  }
+
+  /* Buttons smaller */
+  button[mat-stroked-button],
+  button[mat-raised-button] {
+    padding: 4px 10px !important;
+    font-size: 0.85rem !important;
+  }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+
+  .theme-heading {
+    font-size: 1.3rem !important;
+  }
+
+  button[mat-stroked-button],
+  button[mat-raised-button] {
+    padding: 3px 8px !important;
+    font-size: 0.75rem !important;
+  }
+
+}
+
+
+/* ================= EXTRA SMALL DEVICES ================= */
+@media (max-width: 360px) {
+
+  .theme-heading {
+    font-size: 1.1rem !important;
+  }
+
+  .flex.items-center.gap-6 {
+    gap: 0.4rem;
+  }
+
+}
+/* ⭐ PERMANENT HAMBURGER FIX ⭐ */
+
+/* Hide hamburger on desktop */
+@media (min-width: 1024px) {
+  .mobile-hamburger {
+    display: none !important;
+  }
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 1023px) {
+  .mobile-hamburger {
+    display: inline-flex !important;
+  }
 }

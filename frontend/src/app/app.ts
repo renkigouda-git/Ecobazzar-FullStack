@@ -4,6 +4,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,11 @@ import { Footer } from './components/footer/footer';
   styleUrl: './app.scss'
 })
 export class App {
+
   protected readonly title = signal('ecobazaar-frontend');
+
+  constructor(private themeService: ThemeService) {
+    // 🔥 APPLY SAVED THEME ON APP LOAD
+    this.themeService.loadTheme();
+  }
 }

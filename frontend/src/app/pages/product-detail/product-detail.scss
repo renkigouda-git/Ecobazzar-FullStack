@@ -84,3 +84,92 @@ h1, h2, h3, h4 {
 *, *::before, *::after {
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+/* ==================================================
+   PRODUCT DETAIL MOBILE FIX
+   Desktop untouched
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Reduce vertical page padding */
+  .min-h-screen {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Product Image */
+  .product-img {
+    height: 260px !important;
+  }
+
+  /* Product Title */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Description */
+  p.text-xl {
+    font-size: 0.95rem !important;
+  }
+
+  /* Price Row Stack */
+  .flex.items-center.gap-6 {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+
+  /* Price font */
+  .text-5xl {
+    font-size: 2rem !important;
+  }
+
+  /* Eco CO2 box */
+  .eco-box {
+    width: 100% !important;
+    padding: 16px !important;
+  }
+
+  /* Quantity + Button stack */
+  .flex.items-center.gap-6.pt-6 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Quantity input */
+  input[type="number"] {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Add to cart button */
+  button.flex-1 {
+    max-width: 100% !important;
+    font-size: 1.2rem !important;
+    padding: 18px !important;
+  }
+
+  /* Alternatives title */
+  h2 {
+    font-size: 1.8rem !important;
+  }
+
+}
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+
+  .product-img {
+    height: 220px !important;
+  }
+
+  h1 {
+    font-size: 1.7rem !important;
+  }
+
+  .text-5xl {
+    font-size: 1.8rem !important;
+  }
+
+}

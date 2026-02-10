@@ -207,8 +207,7 @@ input:focus, textarea:focus {
 }
 /* FINAL GLOBAL FIX – STRONG TEXT, SOLID CARDS, BEAUTIFUL BUTTONS */
 
-:root,
-[class^="theme-"] {
+:root{
 
   /* Strong readable text */
   --text: #0d0d0d;
@@ -281,3 +280,121 @@ button[mat-stroked-button]:hover {
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
 }
+/* ==========================================================
+   SAFE DARK + NEON VISIBILITY ENHANCEMENT
+   ✔ Does NOT touch light themes
+   ✔ Only improves dark themes
+   ✔ Production safe
+========================================================== */
+
+.theme-dark-purple,
+.theme-dark-ocean,
+.theme-amoled,
+.theme-neon-blue,
+.theme-neon-pink,
+.theme-neon-green {
+
+  /* ---------------- TEXT VISIBILITY ---------------- */
+  --text: #eaeaea;
+  --heading: #ffffff;
+
+  /* ---------------- SURFACE + CARDS ---------------- */
+  --surface: #121212;
+  --card-bg: #161616;
+  --card-border: rgba(255,255,255,0.15);
+
+  /* ---------------- BUTTON SYSTEM ---------------- */
+  --button-bg: var(--accent);
+  --button-text: #000000;
+  --button-hover: color-mix(in srgb, var(--accent) 75%, black);
+
+  /* ---------------- NAVBAR ---------------- */
+  --nav-text: #ffffff;
+}
+
+
+/* AMOLED SPECIAL EXTRA CLARITY */
+.theme-amoled {
+  --bg: #000000;
+  --surface: #050505;
+  --card-bg: #080808;
+  --text: #f5f5f5;
+}
+
+
+/* ==========================================================
+   NAVBAR TEXT FIX
+========================================================== */
+.theme-dark-purple .theme-navbar,
+.theme-dark-ocean .theme-navbar,
+.theme-amoled .theme-navbar,
+.theme-neon-blue .theme-navbar,
+.theme-neon-pink .theme-navbar,
+.theme-neon-green .theme-navbar {
+  color: var(--text) !important;
+}
+
+
+/* ==========================================================
+   DROPDOWN + MENU FIX
+========================================================== */
+.theme-dark-purple .mat-mdc-menu-panel,
+.theme-dark-ocean .mat-mdc-menu-panel,
+.theme-amoled .mat-mdc-menu-panel,
+.theme-neon-blue .mat-mdc-menu-panel,
+.theme-neon-pink .mat-mdc-menu-panel,
+.theme-neon-green .mat-mdc-menu-panel {
+  background: var(--card-bg) !important;
+  color: var(--text) !important;
+}
+
+
+/* ==========================================================
+   BUTTON TEXT VISIBILITY FIX
+========================================================== */
+.theme-dark-purple .theme-button,
+.theme-dark-ocean .theme-button,
+.theme-amoled .theme-button,
+.theme-neon-blue .theme-button,
+.theme-neon-pink .theme-button,
+.theme-neon-green .theme-button,
+
+.theme-dark-purple [mat-raised-button],
+.theme-dark-ocean [mat-raised-button],
+.theme-amoled [mat-raised-button],
+.theme-neon-blue [mat-raised-button],
+.theme-neon-pink [mat-raised-button],
+.theme-neon-green [mat-raised-button] {
+
+  color: var(--button-text) !important;
+}
+
+
+/* ==========================================================
+   STROKED BUTTON FIX
+========================================================== */
+.theme-dark-purple [mat-stroked-button],
+.theme-dark-ocean [mat-stroked-button],
+.theme-amoled [mat-stroked-button],
+.theme-neon-blue [mat-stroked-button],
+.theme-neon-pink [mat-stroked-button],
+.theme-neon-green [mat-stroked-button] {
+
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+
+/* ==========================================================
+   DISABLED BUTTON FIX
+========================================================== */
+.theme-dark-purple button:disabled,
+.theme-dark-ocean button:disabled,
+.theme-amoled button:disabled,
+.theme-neon-blue button:disabled,
+.theme-neon-pink button:disabled,
+.theme-neon-green button:disabled {
+  opacity: 0.5 !important;
+  color: #ffffff !important;
+}
+

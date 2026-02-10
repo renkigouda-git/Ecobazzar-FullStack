@@ -1,112 +1,262 @@
-<!-- ⭐ THEME-AWARE NAVBAR ⭐ -->
 <mat-toolbar class="theme-navbar fixed top-0 left-0 right-0 z-50 shadow-2xl border-b">
 
   <div class="flex items-center justify-between w-full max-w-7xl mx-auto px-6 py-3">
 
-    <!-- Logo -->
+    <!-- LEFT : LOGO -->
     <a routerLink="/" class="flex items-center gap-3 group">
       <div class="text-4xl font-black tracking-tighter theme-heading
                   bg-gradient-to-r from-[color:var(--heading)] to-[color:var(--accent)]
-                  bg-clip-text text-transparent group-hover:opacity-80 transition-all duration-500">
+                  bg-clip-text text-transparent">
         EcoBazaar
       </div>
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-10 flex-1 justify-center">
+    <!-- CENTER : DESKTOP NAV -->
+   <nav class="hidden lg:flex items-center gap-10 flex-1 justify-center">
 
-      <!-- Normal User -->
-      <ng-container *ngIf="auth.isUser() && !auth.isSeller() && !auth.isAdmin()">
+  <!-- ALWAYS SHOW -->
+  <a routerLink="/"
+     routerLinkActive="active-link"
+     [routerLinkActiveOptions]="{ exact: true }"
+     class="nav-link text-lg">
+    Home
+  </a>
 
-        <a routerLink="/products" routerLinkActive="active-link" class="nav-link text-lg">
+  <!-- ALWAYS SHOW SHOP -->
+ <a *ngIf="!auth.isSeller() && !auth.isAdmin()"
+   routerLink="/products"
+   routerLinkActive="active-link"
+   class="nav-link text-lg">
   Shop
 </a>
 
-<a routerLink="/cart" routerLinkActive="active-link" class="nav-link text-lg relative">
-  Cart
-  <span *ngIf="cartCount > 0"
-        class="absolute -top-3 -right-6 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-lg">
-    {{ cartCount }}
-  </span>
-</a>
 
-     <a routerLink="/dashboard" class="nav-link text-lg">
-  My Impact
-</a>
-   
 
-        
+  <!-- AFTER LOGIN USER ONLY -->
+  <ng-container *ngIf="auth.isLoggedIn()">
 
-      </ng-container>
+    <ng-container *ngIf="auth.isUser()">
 
-      <!-- Seller -->
-      <ng-container *ngIf="auth.isSeller() && !auth.isAdmin()">
-        <a routerLink="/seller/dashboard"
-           class="font-bold text-xl theme-heading transition-all duration-300 hover:scale-110">
-          Seller Hub
-        </a>
-      </ng-container>
+      <a routerLink="/cart"
+         routerLinkActive="active-link"
+         class="nav-link text-lg relative">
 
-      <!-- Admin -->
-      <ng-container *ngIf="auth.isAdmin()">
-        <a routerLink="/admin"
-           class="px-8 py-3 rounded-full font-black transition-all duration-300
-                  backdrop-blur-md border theme-text theme-card hover:opacity-80">
-          Admin Panel
-        </a>
-      </ng-container>
+        Cart
 
-    </nav>
+        <span *ngIf="cartCount > 0"
+              class="absolute -top-3 -right-6 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-lg">
+          {{ cartCount }}
+        </span>
 
-    <!-- Right Side -->
+      </a>
+
+      <a routerLink="/dashboard"
+         routerLinkActive="active-link"
+         class="nav-link text-lg">
+        My Impact
+      </a>
+    
+    </ng-container>
+   <ng-container *ngIf="auth.isAdmin()">
+
+  <a routerLink="/admin"
+     routerLinkActive="active-link"
+     class="nav-link text-lg">
+    Admin Panel
+  </a>
+
+
+</ng-container>
+<ng-container *ngIf="auth.isSeller()">
+
+  <a routerLink="/seller/dashboard"
+     routerLinkActive="active-link"
+     class="nav-link text-lg">
+    Seller Dashboard
+  </a>
+
+  <a routerLink="/seller/product"
+     routerLinkActive="active-link"
+     class="nav-link text-lg">
+    Add Product
+  </a>
+
+</ng-container>
+  </ng-container>
+
+</nav>
+
+
+    <!-- RIGHT SIDE -->
     <div class="flex items-center gap-6">
-      <!-- Always Visible Themes Button -->
-<button 
-  mat-stroked-button 
-  [matMenuTriggerFor]="themeMenu"
-  class="px-6 py-2 rounded-full font-semibold theme-text border transition hover:opacity-80"
->
-  🌈 Themes
-</button>
 
-      <!-- Guest -->
-      <ng-container *ngIf="!auth.isLoggedIn()">
+      <!-- Desktop Controls -->
+      <div class="hidden lg:flex items-center gap-6">
 
-        <button mat-stroked-button routerLink="/login"
-                class="px-6 py-2 rounded-full font-semibold theme-text border transition">
-          Login
-        </button>
+  <!-- ⭐ BEFORE LOGIN -->
+  <ng-container *ngIf="!auth.isLoggedIn()">
+     <button mat-stroked-button
+            [matMenuTriggerFor]="themeMenu"
+            class="px-6 py-2 rounded-full font-semibold theme-text border">
+      🌈 Themes
+    </button>
+    <a routerLink="/login">
+      <button mat-stroked-button
+              class="px-6 py-2 rounded-full font-semibold theme-text border">
+        Login
+      </button>
+    </a>
 
-        <button mat-raised-button routerLink="/register"
-                class="px-8 py-2 rounded-full font-bold theme-button shadow-lg">
-          Join Free
-        </button>
+    <a routerLink="/register">
+      <button mat-raised-button
+              class="px-6 py-2 rounded-full font-semibold">
+        Join Free
+      </button>
+    </a>
 
-      </ng-container>
+  </ng-container>
 
-      <!-- Logged In -->
-      <ng-container *ngIf="auth.isLoggedIn()">
+  <!-- ⭐ AFTER LOGIN -->
+  <ng-container *ngIf="auth.isLoggedIn()">
 
-        <div class="flex items-center gap-6 border-l pl-6 theme-text">
+    <button mat-stroked-button
+            [matMenuTriggerFor]="themeMenu"
+            class="px-6 py-2 rounded-full font-semibold theme-text border">
+      🌈 Themes
+    </button>
 
-          <div class="text-right">
-            <p class="opacity-75 text-sm theme-text">Welcome back</p>
-            <p class="font-bold text-lg theme-heading">{{ auth.getName() }}</p>
-          </div>
+    <div class="flex items-center gap-6 border-l pl-6 theme-text">
+       
+      <div class="text-right">
+        <p class="opacity-75 text-sm">Welcome back</p>
+        <p class="font-bold text-lg">{{ auth.getName() }}</p>
+      </div>
 
-          <button mat-icon-button [matMenuTriggerFor]="userMenu">
-            <mat-icon class="text-3xl theme-heading">account_circle</mat-icon>
-          </button>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
 
-        </div>
+    </div>
 
-      </ng-container>
+  </ng-container>
+
+</div>
+
+
+      <!-- MOBILE HAMBURGER -->
+      <button
+  mat-icon-button
+  class="mobile-hamburger"
+  (click)="mobileMenuOpen = !mobileMenuOpen">
+
+        <mat-icon>menu</mat-icon>
+      </button>
 
     </div>
 
   </div>
-</mat-toolbar>
 
+  <!-- MOBILE SIDEMENU -->
+  <div *ngIf="mobileMenuOpen"
+     class="lg:hidden absolute top-full left-0 w-full theme-navbar shadow-xl p-6 flex flex-col gap-4">
+<div *ngIf="auth.isLoggedIn()"
+     class="pb-4 mb-4 border-b theme-text flex flex-col">
+
+  <span class="text-sm opacity-70">Welcome back</span>
+
+  <span class="text-xl font-black tracking-wide">
+    {{ auth.getName() }}
+  </span>
+
+</div>
+
+  <!-- ALWAYS -->
+  <a routerLink="/" class="nav-link text-lg" (click)="mobileMenuOpen=false">
+    Home
+  </a>
+<a *ngIf="!auth.isSeller() && !auth.isAdmin()"
+   routerLink="/products"
+   class="nav-link text-lg"
+   (click)="mobileMenuOpen=false">
+  Shop
+</a>
+
+
+  <a class="nav-link text-lg cursor-pointer"
+       [matMenuTriggerFor]="themeMenu">
+      Themes
+    </a>
+    
+  <!-- BEFORE LOGIN -->
+  <ng-container *ngIf="!auth.isLoggedIn()">
+
+    <a routerLink="/login" (click)="mobileMenuOpen=false">
+  <button mat-stroked-button class="w-full py-3 rounded-xl">
+    Login
+  </button>
+</a>
+<a routerLink="/register" (click)="mobileMenuOpen=false">
+  <button mat-raised-button class="w-full py-3 rounded-xl">
+    Join Free
+  </button>
+</a>
+
+
+  </ng-container>
+
+  <!-- AFTER LOGIN -->
+  <ng-container *ngIf="auth.isLoggedIn()">
+
+  <!-- ⭐ NORMAL USER -->
+  <ng-container *ngIf="auth.isUser()">
+
+    <a routerLink="/cart" class="nav-link text-lg" (click)="mobileMenuOpen=false">
+      Cart
+    </a>
+
+    <a routerLink="/dashboard" class="nav-link text-lg" (click)="mobileMenuOpen=false">
+      My Impact
+    </a>
+
+  </ng-container>
+<ng-container *ngIf="auth.isSeller()">
+
+  <a routerLink="/seller/dashboard"
+     class="nav-link text-lg"
+     (click)="mobileMenuOpen=false">
+     Seller Dashboard
+  </a>
+
+  <a routerLink="/seller/product"
+     class="nav-link text-lg"
+     (click)="mobileMenuOpen=false">
+     Add Product
+  </a>
+
+</ng-container>
+
+  <!-- ⭐ ADMIN -->
+  <ng-container *ngIf="auth.isAdmin()">
+
+    <a routerLink="/admin" class="nav-link text-lg" (click)="mobileMenuOpen=false">
+      Admin Panel
+    </a>
+
+  </ng-container>
+
+  <!-- Logout for everyone -->
+  <a class="nav-link text-lg cursor-pointer"
+     (click)="logout(); mobileMenuOpen=false">
+    Logout
+  </a>
+
+</ng-container>
+
+
+</div>
+
+
+</mat-toolbar>
 
 <!-- ⭐ USER MENU ⭐ -->
 <mat-menu #userMenu="matMenu" class="mt-4">

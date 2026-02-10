@@ -83,3 +83,93 @@
 .chart-inner {
   padding: 10px !important;
 }
+/* ==========================================================
+   DASHBOARD MOBILE RESPONSIVE FIX
+   Desktop untouched
+========================================================== */
+
+@media (max-width: 1024px) {
+
+  /* Greeting */
+  h1 {
+    font-size: 2.6rem !important;
+    text-align: center;
+  }
+
+  /* Subtitle */
+  .text-2xl {
+    font-size: 1.2rem !important;
+  }
+
+  /* Chart cards */
+  .chart-card {
+    padding: 20px !important;
+  }
+
+  .chart-inner {
+    height: 260px !important;
+  }
+
+  /* Stat cards */
+  .stat-card {
+    padding: 24px !important;
+    min-height: 140px;
+  }
+
+  .stat-card p.text-6xl {
+    font-size: 2.5rem !important;
+  }
+
+  .stat-card p.text-5xl {
+    font-size: 2rem !important;
+  }
+
+  /* ECO Badge */
+  .eco-badge-card {
+    padding: 26px !important;
+    text-align: center;
+  }
+
+  .eco-badge-card p.text-7xl {
+    font-size: 3rem !important;
+  }
+
+  /* Dashboard navigation buttons */
+  .dashboard-btn {
+    font-size: 1.4rem !important;
+    padding: 20px !important;
+  }
+
+  /* Action cards */
+  .action-card {
+    padding: 24px !important;
+    text-align: center;
+  }
+
+  .card-heading {
+    font-size: 1.6rem !important;
+  }
+
+  .card-text {
+    font-size: 1rem !important;
+  }
+
+}
+
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .chart-inner {
+    height: 220px !important;
+  }
+
+  .dashboard-btn {
+    font-size: 1.2rem !important;
+  }
+
+}

@@ -35,3 +35,58 @@ footer {
     transform: translateY(0px);
   }
 }
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Title */
+  .footer-title {
+    font-size: 2.2rem;
+    line-height: 1.3;
+  }
+
+  /* Subtitle */
+  .footer-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Stat Cards */
+  .footer-stat-card {
+    padding: 1.5rem;
+  }
+
+  .footer-stat-card p:first-child {
+    font-size: 2.5rem;
+  }
+
+  /* Final Text */
+  .footer-final-text {
+    font-size: 1.5rem;
+  }
+
+}
+
+
+/* ===== Small Mobile ===== */
+
+@media (max-width: 480px) {
+
+  .footer-title {
+    font-size: 1.8rem;
+  }
+
+  .footer-subtitle {
+    font-size: 1rem;
+  }
+
+  .footer-final-text {
+    font-size: 1.2rem;
+  }
+
+}
