@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CartSummaryResponse {
   items: Array<{
@@ -25,7 +26,7 @@ export interface CartSummaryResponse {
   providedIn: 'root'
 })
 export class CartService {
-  private readonly base = 'http://localhost:8080/api/cart';
+  private readonly base = `${environment.apiUrl}/api/cart`;
 
   constructor(private http: HttpClient) {}
 

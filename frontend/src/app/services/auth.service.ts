@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface LoginResponse {
   token: string;
@@ -12,7 +13,7 @@ interface LoginResponse {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = '/api/auth';
+  private baseUrl = `${environment.apiUrl}/api/auth`;
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.loggedIn.asObservable();
 
