@@ -8,27 +8,35 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const toastr = inject(ToastrService);
 
-  const token = localStorage.getItem('token'); // ✅ don't fallback to empty string
+  const token = localStorage.getItem('token');
   const skipAuthFor = ['api.cloudinary.com'];
   const shouldSkip = skipAuthFor.some(d => req.url.includes(d));
 
   if (token && !shouldSkip) {
-    req = req.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
+    req = req.clone({
+      setHeaders: { Authorization: `Bearer ${token}` }
+    });
   }
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
+
       if (err.status === 401) {
-        toastr.error('Your session has expired. Please login again.', 'Unauthorized');
-        // ❌ Don't clear token immediately if request was public or token just missing
-        // ✅ Clear only if token was actually used
-        if (token) {
-          localStorage.clear();
-          router.navigate(['/login']);
+
+        // Prevent logout on public GET APIs
+        if (req.method === 'GET' && !req.url.includes('/seller')) {
+          return throwError(() => err);
         }
-      } else if (err.status === 403) {
-        toastr.error('You are not allowed to access this resource.', 'Forbidden');
+
+        toastr.error('Session expired. Please login again.');
+        localStorage.clear();
+        router.navigate(['/login']);
       }
+
+      else if (err.status === 403) {
+        toastr.error('Access denied.');
+      }
+
       return throwError(() => err);
     })
   );
