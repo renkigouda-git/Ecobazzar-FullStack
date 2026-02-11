@@ -23,15 +23,14 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
       if (err.status === 401) {
 
-        // Prevent logout on public GET APIs
-        if (req.method === 'GET' && !req.url.includes('/seller')) {
-          return throwError(() => err);
-        }
+  console.warn("401 detected for:", req.url);
 
-        toastr.error('Session expired. Please login again.');
-        localStorage.clear();
-        router.navigate(['/login']);
-      }
+  // 🚀 DO NOT auto logout
+  toastr.warning('Authentication issue. Please retry.');
+
+  return throwError(() => err);
+}
+
 
       else if (err.status === 403) {
         toastr.error('Access denied.');
