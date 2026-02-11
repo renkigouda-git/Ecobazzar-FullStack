@@ -9,10 +9,17 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const toastr = inject(ToastrService);
 
   const token = localStorage.getItem('token');
-  const skipAuthFor = ['api.cloudinary.com'];
-  const shouldSkip = skipAuthFor.some(d => req.url.includes(d));
 
-  if (token && !shouldSkip) {
+  // ⭐ PUBLIC API LIST
+  const publicApis = [
+    '/api/products',
+    '/api/products/',
+    'api.cloudinary.com'
+  ];
+
+  const isPublic = publicApis.some(url => req.url.includes(url));
+
+  if (token && !isPublic) {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` }
     });
@@ -21,18 +28,13 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
 
-      if (err.status === 401) {
+      if (err.status === 401 && !isPublic) {
+        toastr.error('Session expired. Please login again.');
+        localStorage.clear();
+        router.navigate(['/login']);
+      }
 
-  console.warn("401 detected for:", req.url);
-
-  // 🚀 DO NOT auto logout
-  toastr.warning('Authentication issue. Please retry.');
-
-  return throwError(() => err);
-}
-
-
-      else if (err.status === 403) {
+      if (err.status === 403) {
         toastr.error('Access denied.');
       }
 
