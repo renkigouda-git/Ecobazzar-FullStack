@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class CloudinaryService {
   private cloudName = 'drrlp77h8';
       // <<-- replace if different
-  private unsignedPreset = 'ecobazzar'; // <<-- replace if different
+  private unsignedPreset = 'ecobazzar_unsigned'; // <<-- replace if different
 
   constructor(private http: HttpClient) {}
 
