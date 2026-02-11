@@ -5,32 +5,25 @@ import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
+
   const router = inject(Router);
   const toastr = inject(ToastrService);
 
   const token = localStorage.getItem('token');
 
-  // ⭐ Allow ONLY public GET product APIs
-  const isPublicProductsGet =
-    req.method === 'GET' &&
-    req.url.includes('/api/products');
-
+  // ONLY skip Cloudinary
   const isCloudinary = req.url.includes('api.cloudinary.com');
 
-  const shouldSkipToken = isPublicProductsGet || isCloudinary;
-
-  if (token && !shouldSkipToken) {
+  if (token && !isCloudinary) {
     req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+      setHeaders: { Authorization: `Bearer ${token}` }
     });
   }
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
 
-      if (err.status === 401 && !shouldSkipToken) {
+      if (err.status === 401 && !isCloudinary) {
         toastr.error('Session expired. Please login again.');
         localStorage.clear();
         router.navigate(['/login']);
