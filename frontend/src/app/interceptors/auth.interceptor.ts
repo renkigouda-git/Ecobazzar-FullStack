@@ -10,25 +10,27 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
   const token = localStorage.getItem('token');
 
-  // ⭐ PUBLIC API LIST
-  const publicApis = [
-    '/api/products',
-    '/api/products/',
-    'api.cloudinary.com'
-  ];
+  // ⭐ Allow ONLY public GET product APIs
+  const isPublicProductsGet =
+    req.method === 'GET' &&
+    req.url.includes('/api/products');
 
-  const isPublic = publicApis.some(url => req.url.includes(url));
+  const isCloudinary = req.url.includes('api.cloudinary.com');
 
-  if (token && !isPublic) {
+  const shouldSkipToken = isPublicProductsGet || isCloudinary;
+
+  if (token && !shouldSkipToken) {
     req = req.clone({
-      setHeaders: { Authorization: `Bearer ${token}` }
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
     });
   }
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
 
-      if (err.status === 401 && !isPublic) {
+      if (err.status === 401 && !shouldSkipToken) {
         toastr.error('Session expired. Please login again.');
         localStorage.clear();
         router.navigate(['/login']);
