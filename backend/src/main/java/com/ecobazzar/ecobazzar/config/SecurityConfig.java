@@ -49,8 +49,12 @@ public class SecurityConfig {
                 .requestMatchers("/api/admin-request/has-pending").authenticated()
 
                 // SELLER ENDPOINTS
-                .requestMatchers("/api/products/seller").hasAnyRole("SELLER", "ADMIN")
-                .requestMatchers("/api/products/**").hasAnyRole("SELLER", "ADMIN")
+.requestMatchers("/api/products/seller").hasAnyRole("SELLER", "ADMIN")
+
+.requestMatchers(HttpMethod.POST, "/api/products/**").hasAnyRole("SELLER", "ADMIN")
+.requestMatchers(HttpMethod.PUT, "/api/products/**").hasAnyRole("SELLER", "ADMIN")
+.requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAnyRole("SELLER", "ADMIN")
+
 
                 // ADMIN-ONLY ENDPOINTS
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
