@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CloudinaryService {
-  private cloudName = 'dyxha7yei';      // <<-- replace if different
+  private cloudName = 'drrlp77h8';
+      // <<-- replace if different
   private unsignedPreset = 'ecobazzar'; // <<-- replace if different
 
   constructor(private http: HttpClient) {}
