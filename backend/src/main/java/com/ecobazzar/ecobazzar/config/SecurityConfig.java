@@ -39,7 +39,9 @@ public class SecurityConfig {
                 // PUBLIC ENDPOINTS
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/products", "/api/products/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/products").permitAll()
+.requestMatchers(HttpMethod.GET, "/api/products/{id}").permitAll()
+
 
                 // USER-ONLY ENDPOINTS
                 .requestMatchers("/api/reports/user/**").hasRole("USER")
