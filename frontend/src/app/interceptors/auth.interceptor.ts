@@ -11,22 +11,21 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
   const token = localStorage.getItem('token');
 
-  // Only skip Cloudinary
-  if (token && !req.url.includes('api.cloudinary.com')) {
+  const isCloudinary = req.url.includes('api.cloudinary.com');
+
+  // Attach token
+  if (token && !isCloudinary) {
     req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+      setHeaders: { Authorization: `Bearer ${token}` }
     });
   }
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
 
-      if (err.status === 401 && !req.url.includes('api.cloudinary.com')) {
-        toastr.error('Session expired. Please login again.');
-        localStorage.clear();
-        router.navigate(['/login']);
+      // ❌ DO NOT AUTO LOGOUT
+      if (err.status === 401) {
+        console.warn("401 Unauthorized detected → ignoring auto logout");
       }
 
       if (err.status === 403) {
