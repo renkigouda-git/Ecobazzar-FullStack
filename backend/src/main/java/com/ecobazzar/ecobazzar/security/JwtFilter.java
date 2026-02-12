@@ -79,22 +79,23 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     private Collection<SimpleGrantedAuthority> extractAuthorities(Claims claims) {
-        List<SimpleGrantedAuthority> result = new ArrayList<>();
-        Object rolesObj = claims.get("roles");
-        if (rolesObj instanceof List<?> list) {
-            for (Object o : list) result.add(new SimpleGrantedAuthority(normalizeRole(String.valueOf(o))));
+
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+    Object rolesObj = claims.get("roles");
+
+    if (rolesObj instanceof List<?> rolesList) {
+        for (Object role : rolesList) {
+            authorities.add(new SimpleGrantedAuthority(String.valueOf(role)));
         }
-        String singleRole = claims.get("role", String.class);
-        if (singleRole != null && !singleRole.isBlank()) {
-            result.add(new SimpleGrantedAuthority(normalizeRole(singleRole)));
-        }
-        if (result.isEmpty()) result.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return result;
     }
 
-    private String normalizeRole(String role) {
-        if (role == null || role.isBlank()) return "ROLE_USER";
-        role = role.trim().toUpperCase();
-        return role.startsWith("ROLE_") ? role : "ROLE_" + role;
+    if (authorities.isEmpty()) {
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
     }
+
+    return authorities;
+}
+
+   
 }

@@ -83,7 +83,7 @@ public class AuthService {
         user.getEmail(),
         java.util.List.of(user.getRole()),
         user.getId(),
-        true
+        false
 );
 
         System.out.println("LOGIN SUCCESS → JWT generated: " + token.substring(0, 20) + "...");
