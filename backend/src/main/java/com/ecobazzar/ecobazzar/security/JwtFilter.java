@@ -35,14 +35,19 @@ public class JwtFilter extends OncePerRequestFilter {
 
         final String path = request.getRequestURI();
 
-        if (path.startsWith("/api/auth/") || path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui")) {
-            chain.doFilter(request, response); return;
-        }
-        if ("GET".equalsIgnoreCase(request.getMethod())
-        && path.startsWith("/api/products")) {
+       if (
+    path.startsWith("/api/auth") ||
+    path.startsWith("/v3/api-docs") ||
+    path.startsWith("/swagger-ui") ||
+    (request.getMethod().equalsIgnoreCase("GET")
+        && path.startsWith("/api/products")
+        && !path.startsWith("/api/products/seller"))
+) {
     chain.doFilter(request, response);
     return;
 }
+
+
 
 
         final String authHeader = request.getHeader("Authorization");
