@@ -12,6 +12,8 @@ import com.ecobazzar.ecobazzar.repository.ProductRepository;
 import com.ecobazzar.ecobazzar.repository.UserRepository;
 import com.ecobazzar.ecobazzar.service.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -28,7 +30,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
+public Product addProduct(@Valid @RequestBody Product product) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User seller = userRepository.findByEmail(email)

@@ -1,5 +1,5 @@
 package com.ecobazzar.ecobazzar.model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +13,6 @@ public class Product {
     private String name;
     @Lob
 @Column(columnDefinition = "TEXT")
-@jakarta.validation.constraints.NotBlank
 private String details;
 
     private Double price;
@@ -27,9 +26,9 @@ private String details;
     private boolean ecoRequested = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
-    private User seller;
-
+@JoinColumn(name = "seller_id")
+@JsonIgnore
+private User seller;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
