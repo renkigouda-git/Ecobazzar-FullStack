@@ -28,7 +28,7 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SELLER','ROLE_ADMIN')")
     @PostMapping
 public Product addProduct(@Valid @RequestBody Product product) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -48,9 +48,10 @@ public Product addProduct(@Valid @RequestBody Product product) {
         return productService.getAllProducts();
     }
 
+@PreAuthorize("hasAnyAuthority('ROLE_SELLER','ROLE_ADMIN')")
+@GetMapping("/seller")
 
-    @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
-    @GetMapping("/seller")
+    
     public List<Product> listSellerProducts() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -63,8 +64,9 @@ public Product addProduct(@Valid @RequestBody Product product) {
         return productService.getProductById(id);
     }
 
-    @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
-    @PutMapping("/{id}")
+   @PreAuthorize("hasAnyAuthority('ROLE_SELLER','ROLE_ADMIN')")
+@PutMapping("/{id}")
+
     public Product updateProductDetails(@PathVariable Long id, @RequestBody Product incoming, Authentication auth) {
         String email = auth.getName();
         User current = userRepository.findByEmail(email)
@@ -90,14 +92,15 @@ public Product addProduct(@Valid @RequestBody Product product) {
     }
 
 
-    @PreAuthorize("hasAnyRole('SELLER','ADMIN')")
-    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_SELLER','ROLE_ADMIN')")
+@DeleteMapping("/{id}")
+
     public void deleteProductDetails(@PathVariable Long id) {
         productService.deleteProductDetails(id);
     }
     
     @GetMapping("/ai/suggestions")
-    @PreAuthorize("hasRole('USER')")  
+    @PreAuthorize("hasAuthority('ROLE_USER')") 
     public List<Product> getAiEcoSuggestions(@RequestParam("productId") Long productId) {
         Product current = productService.getProductById(productId);
 
