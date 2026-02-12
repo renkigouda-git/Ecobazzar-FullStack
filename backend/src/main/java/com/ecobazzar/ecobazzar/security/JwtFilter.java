@@ -38,11 +38,12 @@ public class JwtFilter extends OncePerRequestFilter {
         if (path.startsWith("/api/auth/") || path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui")) {
             chain.doFilter(request, response); return;
         }
-        if ("GET".equalsIgnoreCase(request.getMethod())) {
-            if (path.equals("/api/products") || path.matches("^/api/products/\\d+$")) {
-                chain.doFilter(request, response); return;
-            }
-        }
+        if ("GET".equalsIgnoreCase(request.getMethod())
+        && path.startsWith("/api/products")) {
+    chain.doFilter(request, response);
+    return;
+}
+
 
         final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

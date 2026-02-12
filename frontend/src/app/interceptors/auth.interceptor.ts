@@ -11,7 +11,6 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
   const token = localStorage.getItem('token');
 
-  // ONLY skip Cloudinary
   const isCloudinary = req.url.includes('api.cloudinary.com');
 
   if (token && !isCloudinary) {
@@ -23,7 +22,10 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
 
-      if (err.status === 401 && !isCloudinary) {
+      // ⭐ DO NOT logout on product public API
+      const isProductPublic = req.url.includes('/api/products') && req.method === 'GET';
+
+      if (err.status === 401 && !isCloudinary && !isProductPublic) {
         toastr.error('Session expired. Please login again.');
         localStorage.clear();
         router.navigate(['/login']);
