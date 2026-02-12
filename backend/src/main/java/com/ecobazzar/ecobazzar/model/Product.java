@@ -1,4 +1,5 @@
 package com.ecobazzar.ecobazzar.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -11,60 +12,112 @@ public class Product {
     private Long id;
 
     private String name;
-@Column(columnDefinition = "TEXT")
-private String details;
+
+    @Column(columnDefinition = "TEXT")
+    private String details;
 
     private Double price;
     private Double carbonImpact;
     private String imageUrl;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean ecoCertified = false;
+    // ✅ Use Boolean wrapper only
+    @Column(nullable = false)
+    private Boolean ecoCertified = false;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean ecoRequested = false;
+    @Column(nullable = false)
+    private Boolean ecoRequested = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name = "seller_id")
-@JsonIgnore
-private User seller;
+    @JoinColumn(name = "seller_id")
+    @JsonIgnore
+    private User seller;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // ---------- ID ----------
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDetails() { return details; }
-    public void setDetails(String details) { this.details = details; }
+    // ---------- NAME ----------
+    public String getName() {
+        return name;
+    }
 
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Double getCarbonImpact() { return carbonImpact; }
-    public void setCarbonImpact(Double carbonImpact) { this.carbonImpact = carbonImpact; }
+    // ---------- DETAILS ----------
+    public String getDetails() {
+        return details;
+    }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
-    // BOOLEAN GETTERS — THIS IS THE FIX!
-    public boolean isEcoCertified() { return ecoCertified; }
-    public void setEcoCertified(boolean ecoCertified) { this.ecoCertified = ecoCertified; }
+    // ---------- PRICE ----------
+    public Double getPrice() {
+        return price;
+    }
 
-    public boolean isEcoRequested() { return ecoRequested; }
-    public void setEcoRequested(boolean ecoRequested) { this.ecoRequested = ecoRequested; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-    // For backward compatibility with old code that used Boolean
-    public Boolean getEcoCertified() { return ecoCertified; }
-    public Boolean getEcoRequested() { return ecoRequested; }
+    // ---------- CARBON ----------
+    public Double getCarbonImpact() {
+        return carbonImpact;
+    }
 
-    public void setEcoCertified(Boolean ecoCertified) { this.ecoCertified = ecoCertified != null ? ecoCertified : false; }
-    public void setEcoRequested(Boolean ecoRequested) { this.ecoRequested = ecoRequested != null ? ecoRequested : false; }
+    public void setCarbonImpact(Double carbonImpact) {
+        this.carbonImpact = carbonImpact;
+    }
 
-    public User getSeller() { return seller; }
-    
-    public void setSeller(User seller) { this.seller = seller; }
+    // ---------- IMAGE ----------
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-    public Long getSellerId() { return seller != null ? seller.getId() : null; }
-    public void setSellerId(Long sellerId) { }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    // ---------- ECO CERTIFIED ----------
+    public Boolean getEcoCertified() {
+        return ecoCertified != null ? ecoCertified : false;
+    }
+
+    public void setEcoCertified(Boolean ecoCertified) {
+        this.ecoCertified = ecoCertified != null ? ecoCertified : false;
+    }
+
+    // ---------- ECO REQUESTED ----------
+    public Boolean getEcoRequested() {
+        return ecoRequested != null ? ecoRequested : false;
+    }
+
+    public void setEcoRequested(Boolean ecoRequested) {
+        this.ecoRequested = ecoRequested != null ? ecoRequested : false;
+    }
+
+    // ---------- SELLER ----------
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
+    public Long getSellerId() {
+        return seller != null ? seller.getId() : null;
+    }
+
+    public void setSellerId(Long sellerId) {
+        // intentionally empty
+    }
 }

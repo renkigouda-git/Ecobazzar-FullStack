@@ -86,7 +86,7 @@ public Product addProduct(@Valid @RequestBody Product product) {
         existing.setPrice(incoming.getPrice());
         existing.setCarbonImpact(incoming.getCarbonImpact());
         existing.setImageUrl(incoming.getImageUrl());
-        existing.setEcoRequested(incoming.getEcoRequested() == null ? existing.isEcoRequested() : incoming.getEcoRequested());
+        existing.setEcoRequested(incoming.getEcoRequested() == null ? existing.getEcoRequested() : incoming.getEcoRequested());
 
         return productService.saveProduct(existing); // create a small save wrapper in service (see below)
     }
