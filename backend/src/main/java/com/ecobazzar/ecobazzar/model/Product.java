@@ -11,7 +11,11 @@ public class Product {
     private Long id;
 
     private String name;
-    private String details;
+    @Lob
+@Column(columnDefinition = "TEXT")
+@jakarta.validation.constraints.NotBlank
+private String details;
+
     private Double price;
     private Double carbonImpact;
     private String imageUrl;
