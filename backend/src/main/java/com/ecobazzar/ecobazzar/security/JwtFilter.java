@@ -83,6 +83,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
+    // NEW → support "roles" claim
     Object rolesObj = claims.get("roles");
 
     if (rolesObj instanceof List<?> rolesList) {
@@ -91,12 +92,18 @@ public class JwtFilter extends OncePerRequestFilter {
         }
     }
 
+    // NEW → fallback support old "role" claim
     if (authorities.isEmpty()) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        String role = claims.get("role", String.class);
+        if (role != null) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
     }
 
+    // REMOVE forced ROLE_USER fallback ❌
     return authorities;
 }
+
 
    
 }

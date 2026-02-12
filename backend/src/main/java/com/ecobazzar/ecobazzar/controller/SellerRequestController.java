@@ -21,7 +21,8 @@ public class SellerRequestController {
     }
 
     @PostMapping("/request")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+
     public ResponseEntity<Map<String, String>> requestSellerRole(Authentication auth) {
         User user = userRepository.findByEmail(auth.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -45,7 +46,8 @@ public class SellerRequestController {
     }
 
     @GetMapping("/has-pending")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+
     public boolean hasPendingRequest(Authentication auth) {
         return userRepository.findByEmail(auth.getName())
                 .map(User::isSellerRequestPending)

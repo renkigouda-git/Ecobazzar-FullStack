@@ -24,7 +24,8 @@ public class SellerReportController {
 		this.sellerReportService = sellerReportService;
 	}
 	
-	@PreAuthorize("hasRole('SELLER')")
+	@PreAuthorize("hasAuthority('ROLE_SELLER')")
+
 	@GetMapping("/seller")
 	public SellerReport getSellerRepost(Authentication auth) {
 		String email = auth.getName();
@@ -32,7 +33,8 @@ public class SellerReportController {
 	}
 	
 	@GetMapping("/seller/sales")
-	@PreAuthorize("hasRole('SELLER')")
+	@PreAuthorize("hasAuthority('ROLE_SELLER')")
+
 	public List<Map<String,Object>> getSellerSales(Authentication auth, @RequestParam(defaultValue="7") int days){
 	    return sellerReportService.getSellerSales(auth.getName(), days);
 	}
