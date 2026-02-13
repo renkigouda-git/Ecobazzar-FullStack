@@ -18,39 +18,60 @@ The platform demonstrates real-world software engineering practices including **
 
 ---
 
-## 🖼️ Application Preview
+# 🖼️ Application Preview
 
 ---
 
-### 🏠 Home Pages
+## 🏠 Home Pages
+
+---
 
 **Public Home (Before Login)**  
+
 ![Public Home](screenshots/01-home-public.png)
 
+
+---
+
 **User Home (After Login)**  
+
 ![User Home](screenshots/02-home-user.png)
 
 ---
 
-### 🛍️ Shopping Experience
+## 🛍️ Shopping Experience
+
+---
 
 **Product Marketplace**  
+
 ![Products](screenshots/03-products.png)
 
+
+---
+
 **Product Details & Eco Insights**  
+
 ![Product Details](screenshots/04-product-details.png)
 
+
+---
+
 **Cart & Checkout Flow**  
+
 ![Cart Order](screenshots/05-cart-order.png)
 
 ---
 
-### 👤 User Dashboard
+## 👤 User Dashboard
+
+---
 
 **User Sustainability Dashboard**  
+
 ![User Dashboard](screenshots/06-user-dashboard.png)
 
-Features include:
+### Features include:
 
 - Carbon footprint tracking  
 - Eco score monitoring  
@@ -59,18 +80,29 @@ Features include:
 
 ---
 
-### 🛒 Seller Portal
+## 🛒 Seller Portal
+
+---
 
 **Seller Product Management**  
+
 ![Seller Products](screenshots/07-seller-products.png)
 
+
+---
+
 **Seller Performance Dashboard**  
+
 ![Seller Dashboard](screenshots/08-seller-dashboard.png)
 
+
+---
+
 **Add / Manage Eco Products**  
+
 ![Add Products](screenshots/09-add-products.png)
 
-Seller capabilities include:
+### Seller Capabilities:
 
 - Product listing & editing  
 - Eco certification request submission  
@@ -79,15 +111,22 @@ Seller capabilities include:
 
 ---
 
-### 👑 Admin Command Center
+## 👑 Admin Command Center
+
+---
 
 **Admin Dashboard & Platform Analytics**  
+
 ![Admin Dashboard](screenshots/10-admin-dashboard.png)
 
+
+---
+
 **Approval & Moderation Panel**  
+
 ![Approvals](screenshots/11-approvals.png)
 
-Admin controls:
+### Admin Controls:
 
 - Approve eco-certification requests  
 - Approve seller registration requests  
@@ -97,9 +136,9 @@ Admin controls:
 
 ---
 
-### 🎨 Theme Support
+## 🎨 Theme Support
 
-EcoBazaar includes **10+ premium dynamic themes** including:
+EcoBazaar includes **10+ premium dynamic themes**:
 
 - Snow  
 - Azure  
@@ -111,21 +150,35 @@ EcoBazaar includes **10+ premium dynamic themes** including:
 - Dark Ocean  
 - AMOLED Black  
 
+---
+
 **Theme Selector Interface**  
+
 ![Theme Selector](screenshots/12-theme-selector.png)
 
 ---
 
-### 📱 Mobile Responsive UI
+## 📱 Mobile Responsive Design
 
-**Mobile Home View**  
-![Mobile Home](screenshots/22-mobile-home.png)
+EcoBazaar follows a **mobile-first responsive architecture** ensuring seamless performance across devices.
 
-**Mobile Authentication UI**  
-![Mobile Login](screenshots/23-mobile-login.png)
+### Mobile Experience Includes:
 
-**Mobile Shopping Experience**  
-![Mobile Shop](screenshots/24-mobile-shop.png)
+- Touch-optimized shopping interface  
+- Collapsible navigation menu  
+- Adaptive product grid layout  
+- Compact analytics dashboards  
+- Smooth cart & checkout flow  
+- Fully functional theme selector on mobile  
+- Responsive typography & layout scaling  
+
+### Responsive Design Implementation:
+
+- Tailwind responsive utility system  
+- Flexible grid & flexbox layouts  
+- Adaptive dashboard components  
+- Consistent theming across screen sizes  
+- Optimized UI transitions & animations  
 
 ---
 
@@ -163,7 +216,7 @@ EcoBazaar includes **10+ premium dynamic themes** including:
 - ♻️ Eco product certification moderation  
 - 📊 Platform-wide analytics reporting  
 - 🛍️ Product approval / rejection system  
-- 📈 Order & sustainability reports export  
+- 📈 Order & sustainability reports export (CSV)  
 - 🔐 Admin access request approval system  
 
 ---
@@ -230,30 +283,11 @@ EcoBazaar tracks:
 
 ---
 
-## 📱 UI / UX Highlights
-
-- 🌈 Multi-theme premium UI system  
-- ✨ Animated gradients & glow effects  
-- 💻 Desktop optimized layout  
-- 📱 Fully responsive mobile experience  
-- 🔄 Smooth route transitions  
-- 🎯 Accessibility focused design  
-
----
-
 ## 🚀 Deployment Behavior
 
 - 🔁 Netlify auto-deploys frontend on Git push  
 - 🔁 Render redeploys backend automatically  
 - ⚠️ Free tier services may sleep after inactivity  
-
----
-
-## 🧪 Known Limitations (Free Hosting Constraints)
-
-- ❌ No external payment gateway integration  
-- ❌ Email notification service not integrated  
-- ❌ AI suggestions currently keyword-based  
 
 ---
 
